@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 
 function Navbar() {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" sx={{backgroundColor: "#D8C4B6"}}>
       <Toolbar>
         {/* Left Side: Logo */}
         <Typography
