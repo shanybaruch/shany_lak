@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, Box, Button, Dialog, DialogContent } from "@mui/material";
-import FormSignIn from "../Formsignin/Formsignin"; // ייבוא הקומפוננטה לטופס ההתחברות
+import FormSignIn from "../Formsignin/Formsignin"; 
+
 
 function Navbar() {
   const [open, setOpen] = useState(false); // מצב של פתיחת וסגירת החלון
@@ -10,22 +11,25 @@ function Navbar() {
   const handleClose = () => setOpen(false);
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "#D8C4B6" }}>
+    <AppBar position="fixed" sx={{backgroundColor: "#B6A28E"}} >
       <Toolbar>
         {/* לוגו בצד שמאל */}
         <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1, cursor: "pointer" }}
-        >
-          MyLogo
+        > Logo
+           
         </Typography>
 
         {/* כפתורי ניווט בצד ימין */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 8, py: 3, // מרווח אנכי
+          mt: "auto" }}>
           <Button color="inherit" href="/">Home</Button>
           <Button color="inherit" href="/about">About</Button>
           <Button color="inherit" href="/contact">Contact</Button>
+          <Button color="inherit" href="/Features">Features</Button>
+         
 
           {/* כפתור לפתיחת הדיאלוג */}
           <Button color="inherit" onClick={handleOpen}>
