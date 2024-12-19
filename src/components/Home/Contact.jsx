@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home() {
+function Contact() {
   return (
     <div>
       Shany Baruch
@@ -9,4 +9,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Contact
