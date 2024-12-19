@@ -23,7 +23,7 @@ function HomePage() {
           alignItems: "center",
           backgroundColor: "#f5f5f5",
           textAlign: "center",
-          padding: "20px",
+          p: 4,
         }}
       >
         <Typography variant="h2" gutterBottom>
@@ -38,25 +38,28 @@ function HomePage() {
       </Box>
 
       {/* Features Section */}
-      <Container sx={{ marginY: 5 }}>
+      <Container sx={{ my: 5 }}>
         <Typography variant="h4" textAlign="center" gutterBottom>
           Features
         </Typography>
         <Grid container spacing={4}>
-          {[1, 2, 3].map((feature, index) => (
+          {["Feature 1", "Feature 2", "Feature 3"].map((feature, index) => (
             <Grid item xs={12} md={4} key={index}>
-              <Card>
+              <Card elevation={3} sx={{ borderRadius: 2 }}>
                 <CardMedia
                   component="img"
                   height="140"
-                  image={`https://via.placeholder.com/300?text=Feature+${index + 1}`}
-                  alt={`Feature ${index + 1}`}
+                  image={`https://via.placeholder.com/300?text=${feature}`}
+                  alt={feature}
                 />
                 <CardContent>
-                  <Typography variant="h5">Feature {index + 1}</Typography>
+                  <Typography variant="h5" gutterBottom>
+                    {feature}
+                  </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque venenatis.
+                    Quisque venenatis ipsum sed lorem facilisis, nec auctor
+                    lorem tincidunt.
                   </Typography>
                 </CardContent>
               </Card>
@@ -71,11 +74,13 @@ function HomePage() {
           backgroundColor: "#1976d2",
           color: "white",
           textAlign: "center",
-          padding: "10px",
-          marginTop: "auto",
+          py: 2,
+          mt: "auto",
         }}
       >
-        <Typography variant="body1">© 2023 MyWebsite. All Rights Reserved.</Typography>
+        <Typography variant="body2">
+          © {new Date().getFullYear()} MyWebsite. All Rights Reserved.
+        </Typography>
       </Box>
     </>
   );
