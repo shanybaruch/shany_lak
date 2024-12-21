@@ -10,24 +10,29 @@ import {
   CardMedia,
 } from "@mui/material";
 
+
 function Home() {
   return (
     <div id="Home">
       <Box
         sx={{
-          height: "80vh",
+          backgroundImage: `url('/beigeback.jpg')`, // נתיב יחסי מתוך public
+          backgroundSize: 'fit', // משנה את הגודל כך שכל התמונה תיכנס
+          backgroundRepeat: 'no-repeat', // מונע חזרה על הרקע
+          backgroundPosition: 'center', // ממרכז את התמונה
+          height: "90vh", // מקטין את הגובה של הרקע
+          width: "auto", // מקטין את הרוחב של הרקע
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
           textAlign: "center",
-          p: 6, // מרווח פנימי
-          gap: 4, // רווח בין אלמנטים בתוך הקופסה
+          p: 8, // מרווח פנימי
+          gap: 5, // רווח בין אלמנטים בתוך הקופסה
         }}
       >
         <Typography
-          variant="h2"
+          variant="h4"
           gutterBottom
           sx={{ fontWeight: "bold", mb: 2 }} // מרווח תחתון לכותרת
         >

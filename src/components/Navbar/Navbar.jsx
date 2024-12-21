@@ -18,7 +18,7 @@ function Navbar() {
   const handleClose = () => setOpen(false);
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "#B6A28E" }}>
+    <AppBar position="fixed"  sx={{ backgroundColor: "#d7ccc8", color: "#a1887f"}}>
       <Toolbar>
         {/* לוגו בצד שמאל */}
         <Typography
