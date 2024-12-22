@@ -23,26 +23,52 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "#d7ccc8", color: "#a1887f" }}>
-      <Toolbar>
-        {/* לוגו בצד שמאל */}
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, cursor: "pointer" }}
-        >
-          {" "}
-          Logo
-        </Typography>
+    <AppBar  position="static" elevation={0}  sx={{ backgroundColor: "#d7ccc8", color: "#a1887f" }}>
+  <Toolbar>
+    {/* לוגו בצד שמאל
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        
+        cursor: "pointer",
+      }}
+    >
+      <Box
+        component="img"
+        src="/butterflyback.png" // הנתיב לתמונה (ודאי שהלוגו נמצא ב-public)
+        alt="Logo"
+        sx={{
+          width: 95, // גודל התמונה
+          height: 95,
+          marginRight: 1, // רווח בין התמונה לטקסט
+        }}
+      />
+      <Typography
+        variant="h6"
+        component="div"
+        sx={{
+          fontSize: "18px",
+          color: "#a1887f",
+        }}
+      >
+        {/* Logo */}
+      {/* </Typography>
+    </Box> */}
+
 
         {/* כפתורי ניווט בצד ימין */}
         <Box
           sx={{
+            justifyContent: "center", // ממרכז את הכפתורים אופקית
+            alignItems: "center", // ממרכז את הכפתורים אנכית
             display: "flex",
-            alignItems: "center",
             gap: 7,
             py: 2, // מרווח אנכי
             mt: "auto",
+            flexGrow: 1, // מרחיב את התיבה כדי למרכז הכל
+            color: "black",
+            
           }}
         >
           <Button
@@ -56,7 +82,7 @@ function Navbar() {
               fontSize: "14px",
               color: activeButton === "home" ? "#a1887f" : "inherit", // צבע משתנה אם לחוץ
               fontWeight: activeButton === "home" ? "bold" : "normal", // הדגשה אם לחוץ
-              borderBottom: activeButton === "home" ? "2px solid #a1887f" : "none", // קו תחתון אם לחוץ
+              borderBottom: activeButton === "home" ? "0px solid #a1887f" : "none", // קו תחתון אם לחוץ
             }}
           >
             Home
@@ -73,7 +99,7 @@ function Navbar() {
              
               color: activeButton === "about" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "about" ? "bold" : "normal",
-              borderBottom: activeButton === "about" ? "2px solid #a1887f" : "none",
+              borderBottom: activeButton === "about" ? "0px solid #a1887f" : "none",
             }}
           >
             About
@@ -90,12 +116,13 @@ function Navbar() {
          
               color: activeButton === "contact" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "contact" ? "bold" : "normal",
-              borderBottom: activeButton === "contact" ? "2px solid #a1887f" : "none",
+              borderBottom: activeButton === "contact" ? "0px solid #a1887f" : "none",
             }}
           >
             Contact
           </Button>
           <Button
+
             color="inherit"
             href="#Features"
             onClick={() => handleButtonClick("features")}
@@ -107,7 +134,7 @@ function Navbar() {
           
               color: activeButton === "features" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "features" ? "bold" : "normal",
-              borderBottom: activeButton === "features" ? "2px solid #a1887f" : "none",
+              borderBottom: activeButton === "features" ? "0px solid #a1887f" : "none",
             }}
           >
             Features
@@ -125,7 +152,7 @@ function Navbar() {
          
               color: activeButton === "signin" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "signin" ? "bold" : "normal",
-              borderBottom: activeButton === "signin" ? "2px solid #a1887f" : "none",
+              borderBottom: activeButton === "signin" ? "0px solid #a1887f" : "none",
             }}
           >
             Sign In

@@ -13,10 +13,10 @@ import {
 
 function Home() {
   return (
-    <div id="Home">
-      <Box
+    <div id="Home" >
+      <Box backgroundColor="#d7ccc8"
         sx={{
-          backgroundColor: "white",
+      
           // backgroundImage: `url('/backpage.png')`, // נתיב יחסי מתוך public
           backgroundSize: 'fit', // משנה את הגודל כך שכל התמונה תיכנס
           backgroundRepeat: 'no-repeat', // מונע חזרה על הרקע

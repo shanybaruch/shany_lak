@@ -56,6 +56,7 @@ function FormSignUp() {
           paddingY: 1.5, // מרווח אנכי
           fontSize: "16px",
           borderRadius: 2,
+          backgroundColor:"#8d6e63",
         }}
       >
         Sign Up
@@ -130,7 +131,7 @@ function FormSignUp() {
         >
           <Button
             onClick={() => setOpen(false)}
-            color="secondary"
+            color="black"
             sx={{
               paddingX: 3,
               paddingY: 1.5,
@@ -147,6 +148,7 @@ function FormSignUp() {
               paddingX: 3,
               paddingY: 1.5,
               borderRadius: 2,
+              backgroundColor:"#8d6e63",
             }}
           >
             Submit

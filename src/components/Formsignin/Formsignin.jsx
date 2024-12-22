@@ -68,6 +68,7 @@ function FormSignIn() {
           fontSize: "16px",
           borderRadius: 2, // Rounded button
           textTransform: "none", // Disable uppercase text
+          backgroundColor: "#8d6e63",
         }}
       >
         Sign In
