@@ -16,7 +16,8 @@ function Home() {
     <div id="Home">
       <Box
         sx={{
-          backgroundImage: `url('/backpage.png')`, // נתיב יחסי מתוך public
+          backgroundColor: "white",
+          // backgroundImage: `url('/backpage.png')`, // נתיב יחסי מתוך public
           backgroundSize: 'fit', // משנה את הגודל כך שכל התמונה תיכנס
           backgroundRepeat: 'no-repeat', // מונע חזרה על הרקע
           backgroundPosition: 'center', // ממרכז את התמונה

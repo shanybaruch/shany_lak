@@ -26,7 +26,7 @@ function Contact() {
         sx={{
           fontFamily: "serif",
           fontWeight: "bold",
-          color: "#a67c52",
+          color: "#a1887f",
           textAlign: "center",
         }}
       >
@@ -35,8 +35,8 @@ function Contact() {
       <Typography
         variant="h5"
         sx={{
-          fontFamily: "serif",
-          color: "#a67c52",
+          fontFamily: "sans-serif",
+          color: "#a1887f",
           textAlign: "center",
           marginBottom: 4,
         }}
@@ -55,9 +55,9 @@ function Contact() {
             }}
           >
             <IconButton>
-              <PhoneIcon sx={{ color: "#a67c52" }} />
+              <PhoneIcon sx={{ color: "#a1887f" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#a67c52" }}>
+            <Typography variant="body1" sx={{ color: "#a1887f" }}>
               055-662-5797
             </Typography>
           </Box>
@@ -71,9 +71,9 @@ function Contact() {
             }}
           >
             <IconButton>
-              <MailOutlineIcon sx={{ color: "#a67c52" }} />
+              <MailOutlineIcon sx={{ color: "#a1887f" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#a67c52" }}>
+            <Typography variant="body1" sx={{ color: "#a1887f" }}>
               baruchshany@gmail.com
             </Typography>
           </Box>
@@ -87,9 +87,9 @@ function Contact() {
             }}
           >
             <IconButton>
-              <LocationOnIcon sx={{ color: "#a67c52" }} />
+              <LocationOnIcon sx={{ color: "#a1887f" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#a67c52" }}>
+            <Typography variant="body1" sx={{ color: "#a1887f" }}>
               Weizman, Givatayim
             </Typography>
           </Box>
@@ -103,9 +103,9 @@ function Contact() {
             }}
           >
             <IconButton>
-              <InstagramIcon sx={{ color: "#a67c52" }} />
+              <InstagramIcon sx={{ color: "#a1887f" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#a67c52" }}>
+            <Typography variant="body1" sx={{ color: "#a1887f" }}>
               shanyb.nails
             </Typography>
           </Box>
