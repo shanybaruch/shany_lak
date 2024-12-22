@@ -104,23 +104,7 @@ function Navbar() {
           >
             About
           </Button>
-          <Button
-            color="inherit"
-            href="#Contact"
-            onClick={() => handleButtonClick("contact")}
-            sx={{
-              paddingX: 3,
-              paddingY: 2,
-              height: "60px",
-              fontSize: "14px",
          
-              color: activeButton === "contact" ? "#a1887f" : "inherit",
-              fontWeight: activeButton === "contact" ? "bold" : "normal",
-              borderBottom: activeButton === "contact" ? "0px solid #a1887f" : "none",
-            }}
-          >
-            Contact
-          </Button>
           <Button
 
             color="inherit"
@@ -138,6 +122,24 @@ function Navbar() {
             }}
           >
             Features
+          </Button>
+
+          <Button
+            color="inherit"
+            href="#Contact"
+            onClick={() => handleButtonClick("contact")}
+            sx={{
+              paddingX: 3,
+              paddingY: 2,
+              height: "60px",
+              fontSize: "14px",
+         
+              color: activeButton === "contact" ? "#a1887f" : "inherit",
+              fontWeight: activeButton === "contact" ? "bold" : "normal",
+              borderBottom: activeButton === "contact" ? "0px solid #a1887f" : "none",
+            }}
+          >
+            Contact
           </Button>
 
           {/* כפתור לפתיחת הדיאלוג */}
