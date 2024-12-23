@@ -96,7 +96,7 @@ function Navbar() {
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-             
+
               color: activeButton === "about" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "about" ? "bold" : "normal",
               borderBottom: activeButton === "about" ? "0px solid #a1887f" : "none",
@@ -154,7 +154,7 @@ function Navbar() {
          
               color: activeButton === "signin" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "signin" ? "bold" : "normal",
-              borderBottom: activeButton === "signin" ? "0px solid #a1887f" : "none",
+              borderBottom: activeButton === "signin" ? "0px solidrgb(239, 223, 217)" : "none",
             }}
           >
             Sign In

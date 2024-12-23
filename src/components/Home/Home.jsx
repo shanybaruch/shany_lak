@@ -20,8 +20,8 @@ function Home() {
         {/* תיבה פנימית עם רקע שונה */}
         <Box
           sx={{
-            backgroundColor: "#eeeeee", // צבע רקע פנימי
-            padding: 6, // ריווח פנימי
+            backgroundColor: "#f5f5f5", // צבע רקע פנימי
+            padding: 8, // ריווח פנימי
             borderRadius: 4, // פינות מעוגלות
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // צל קל
             display: "flex",
@@ -50,7 +50,7 @@ function Home() {
               fontFamily: "serif",
               fontWeight: "bold",
               lineHeight: 1.5,
-              maxWidth: "600px",
+              maxWidth: "800px",
               marginBottom: 4,
             }}
           >
