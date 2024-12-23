@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true); // הפעלת האנימציה לאחר טעינת הקומפוננטה
+    }, 100);
+
+    return () => clearTimeout(timer); // ניקוי הטיימר
+  }, []);
+
   return (
     <div id="Home">
       <Box
         sx={{
-          backgroundColor: "#d7ccc8", // צבע רקע ראשי (אפשר לשנות לצבע אחר אם רוצים)
+          backgroundColor: "#d7ccc8", // צבע רקע ראשי
           minHeight: "80vh", // גובה של המסך כולו
           display: "flex", // שימוש ב-Flexbox
           flexDirection: "column", // אלמנטים בסידור אנכי
@@ -28,6 +38,9 @@ function Home() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            opacity: isVisible ? 1 : 0, // שקיפות לאנימציה
+            transform: isVisible ? "translateY(0)" : "translateY(20px)", // תנועה מלמטה למעלה
+            transition: "all 0.8s ease-in-out", // אנימציה חלקה
           }}
         >
           {/* לוגו */}
