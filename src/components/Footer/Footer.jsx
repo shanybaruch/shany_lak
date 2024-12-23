@@ -6,8 +6,8 @@ function Footer() {
     <div>
       <Box
         sx={{
-          backgroundColor: "#B6A28E",
-          color: "white",
+          backgroundColor: "#fdf8f4",
+          color: "black",
           textAlign: "center",
           py: 1, // מרווח אנכי
           mt: "auto",
