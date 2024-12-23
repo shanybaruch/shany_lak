@@ -6,7 +6,6 @@ import {
   Grid,
   Card,
   CardContent,
-  Icon,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import CatalogIcon from "@mui/icons-material/MenuBook";
@@ -35,10 +34,26 @@ function Features() {
   }, []);
 
   const features = [
-    { title: "About me", icon: <PersonIcon sx={{ fontSize: 40, color: "#8d6e63" }} /> },
-    { title: "Catalog", icon: <CatalogIcon sx={{ fontSize: 40, color: "#8d6e63" }} /> },
-    { title: "Price list", icon: <PriceCheckIcon sx={{ fontSize: 40, color: "#8d6e63" }} /> },
-    { title: "Making an appointment", icon: <EventIcon sx={{ fontSize: 40, color: "#8d6e63" }} /> },
+    {
+      title: "Colors",
+      icon: <PersonIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
+      description: "Our range of nail polish colors",
+    },
+    {
+      title: "Catalog",
+      icon: <CatalogIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
+      description: "Browse our catalog of works",
+    },
+    {
+      title: "Price list",
+      icon: <PriceCheckIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
+      description: "View our prices",
+    },
+    {
+      title: "Making an appointment",
+      icon: <EventIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
+      description: "Schedule your next appointment here",
+    },
   ];
 
   return (
@@ -51,18 +66,16 @@ function Features() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#efebe9",
-          padding: 4,
+          padding: 2,
         }}
       >
         <Container
           sx={{
             backgroundColor: "#d7ccc8",
-            padding: "40px",
+            padding: "60px",
             borderRadius: "20px",
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-            width: "90%",
-            maxWidth: "1200px",
-            margin: "0 auto",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+            width: "100%",
           }}
         >
           <Typography
@@ -73,7 +86,7 @@ function Features() {
               mb: 10,
               fontWeight: "bold",
               color: "white",
-              textShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+              textShadow: "2px 3px 3px rgba(0, 0, 0, 0.4)",
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(-30px)",
               transition: "all 0.8s ease-in-out",
@@ -81,13 +94,7 @@ function Features() {
           >
             Visit to..
           </Typography>
-          <Grid
-            container
-            spacing={6}
-            sx={{
-              justifyContent: "center",
-            }}
-          >
+          <Grid container spacing={6}>
             {features.map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box
@@ -107,7 +114,7 @@ function Features() {
                       "&:hover": {
                         transform: "scale(1.05)",
                       },
-                      backgroundColor: "#ffffff", // רקע לבן לכרטיסים
+                      backgroundColor: "#ffffff",
                     }}
                   >
                     <Box
@@ -129,8 +136,12 @@ function Features() {
                       >
                         {feature.title}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" textAlign={"center"}>
-                        Upgrade your nail care routine
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        textAlign={"center"}
+                      >
+                        {feature.description}
                       </Typography>
                     </CardContent>
                   </Card>

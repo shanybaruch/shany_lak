@@ -20,7 +20,6 @@ function Contact() {
     <div id="Contact">
       <Box
         sx={{
-          height: "50vh",
           backgroundColor: "#fdf8f4",
           minHeight: "100vh",
           display: "flex",
@@ -56,7 +55,7 @@ function Contact() {
             SHANY BARUCH
           </Typography>
           <Typography
-            variant="h6"
+            variant="h5"
             sx={{
               fontFamily: "sans-serif",
               color: "#6d4c41",
@@ -86,16 +85,16 @@ function Contact() {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: 2,
+              gap: 4,
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
               transition: "all 0.6s ease-in-out",
             }}
           >
             <IconButton>
-              <PhoneIcon sx={{ color: "#6d4c41" }} />
+              <PhoneIcon sx={{ color: "#6d4c41" , fontSize:"20px"}} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" }}>
+            <Typography variant="body1" sx={{ color: "#6d4c41", fontSize:"20px"}}>
               055-662-5797
             </Typography>
           </Box>
@@ -103,16 +102,16 @@ function Contact() {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: 2,
+              gap: 4,
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
               transition: "all 0.6s ease-in-out 0.2s",
             }}
           >
             <IconButton>
-              <MailOutlineIcon sx={{ color: "#6d4c41" }} />
+              <MailOutlineIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" }}>
+            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px" }}>
               baruchshany@gmail.com
             </Typography>
           </Box>
@@ -120,16 +119,16 @@ function Contact() {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: 2,
+              gap: 4,
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
               transition: "all 0.6s ease-in-out 0.4s",
             }}
           >
             <IconButton>
-              <LocationOnIcon sx={{ color: "#6d4c41" }} />
+              <LocationOnIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" }}>
+            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px" }}>
               Weizman, Givatayim
             </Typography>
           </Box>
@@ -137,16 +136,16 @@ function Contact() {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: 2,
+              gap: 4,
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
               transition: "all 0.6s ease-in-out 0.6s",
             }}
           >
             <IconButton>
-              <InstagramIcon sx={{ color: "#6d4c41" }} />
+              <InstagramIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
             </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" }}>
+            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px"}}>
               shanyb.nails
             </Typography>
           </Box>
