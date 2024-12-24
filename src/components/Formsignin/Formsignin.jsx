@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, TextField, Button, Typography, Link } from "@mui/material";
-import FormSignUp from "./Formsignup";
+import { useNavigate } from "react-router-dom";
 
 function FormSignIn() {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted!");
   };
 
   const handleSignUp = () => {
-    console.log("Redirecting to Sign Up...");
-    // Logic to redirect to sign-up page or open a sign-up dialog
+    navigate("/signup"); // ניווט לדף ההרשמה
   };
 
   return (
@@ -20,14 +21,14 @@ function FormSignIn() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 3, // Space between fields
-        padding: 5, // Padding around the form
-        borderRadius: 2, // Rounded corners
-        boxShadow: 3, // Adds a shadow
-        backgroundColor: "white", // White background
-        width: "100%", // Responsive width
-        maxWidth: "400px", // Max width for the form
-        margin: "auto", // Center the form
+        gap: 3,
+        padding: 5,
+        borderRadius: 2,
+        boxShadow: 3,
+        backgroundColor: "white",
+        width: "100%",
+        maxWidth: "400px",
+        margin: "auto",
       }}
     >
       <Typography variant="h5" textAlign="center" sx={{ mb: 3, fontWeight: "bold" }}>
@@ -42,7 +43,7 @@ function FormSignIn() {
         required
         sx={{
           "& .MuiInputBase-root": {
-            borderRadius: 2, // Rounded input fields
+            borderRadius: 2,
           },
         }}
       />
@@ -54,7 +55,7 @@ function FormSignIn() {
         required
         sx={{
           "& .MuiInputBase-root": {
-            borderRadius: 2, // Rounded input fields
+            borderRadius: 2,
           },
         }}
       />
@@ -64,10 +65,10 @@ function FormSignIn() {
         color="primary"
         fullWidth
         sx={{
-          paddingY: 1.5, // Vertical padding for the button
+          paddingY: 1.5,
           fontSize: "16px",
-          borderRadius: 2, // Rounded button
-          textTransform: "none", // Disable uppercase text
+          borderRadius: 2,
+          textTransform: "none",
           backgroundColor: "#8d6e63",
         }}
       >
@@ -87,8 +88,7 @@ function FormSignIn() {
             fontWeight: "bold",
           }}
         >
-          <FormSignUp/>
-          
+          Sign Up
         </Link>
       </Typography>
     </Box>

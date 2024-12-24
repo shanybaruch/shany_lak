@@ -17,14 +17,14 @@ function Home() {
       <Box
         sx={{
           backgroundColor: "#d7ccc8", // צבע רקע ראשי
-          minHeight: "80vh", // גובה של המסך כולו
+          minHeight: "90vh", // גובה של המסך כולו
           display: "flex", // שימוש ב-Flexbox
           flexDirection: "column", // אלמנטים בסידור אנכי
           justifyContent: "center", // ממרכז אנכית
           alignItems: "center", // ממרכז אופקית
           textAlign: "center", // טקסט במרכז
           color: "#333", // צבע טקסט כהה
-          padding: 4, // ריווח פנימי
+          padding: 3, // ריווח פנימי
         }}
       >
         {/* תיבה פנימית עם רקע שונה */}
@@ -48,11 +48,7 @@ function Home() {
             paddingLeft: "10%",
           }}
         >
-          <Box
-            sx={{
-              
-            }}
-          >
+          <Box sx={{}}>
             {/* לוגו */}
             <Typography
               variant="h6"
