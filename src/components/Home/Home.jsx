@@ -17,21 +17,21 @@ function Home() {
       <Box
         sx={{
           backgroundColor: "#d7ccc8", // צבע רקע ראשי
-          minHeight: "90vh", // גובה של המסך כולו
+          minHeight: "100vh", // גובה של המסך כולו
           display: "flex", // שימוש ב-Flexbox
           flexDirection: "column", // אלמנטים בסידור אנכי
           justifyContent: "center", // ממרכז אנכית
           alignItems: "center", // ממרכז אופקית
           textAlign: "center", // טקסט במרכז
-          color: "#333", // צבע טקסט כהה
-          padding: 3, // ריווח פנימי
+          color: "#333", 
+          padding: 2, 
         }}
       >
         {/* תיבה פנימית עם רקע שונה */}
         <Box
           sx={{
             backgroundColor: "#f5f5f5", // צבע רקע פנימי
-            padding: 10,
+            padding: 5,
             borderRadius: 4, // פינות מעוגלות
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // צל קל
             display: "flex",
@@ -41,10 +41,10 @@ function Home() {
             opacity: isVisible ? 1 : 0, // שקיפות לאנימציה
             transform: isVisible ? "translateY(0)" : "translateY(20px)", // תנועה מלמטה למעלה
             transition: "all 0.8s ease-in-out", // אנימציה חלקה
-            width: "70%", // רוחב 80% מהרוחב הכולל של הדף (אפשר לשנות לערכים אחרים כמו px)
-            maxWidth: "900px", // רוחב מקסימלי של 900px
+            width: "80%", // רוחב 80% מהרוחב הכולל של הדף (אפשר לשנות לערכים אחרים כמו px)
+            maxWidth: "1000px", // רוחב מקסימלי של 900px
             height: "auto", // גובה אוטומטי שיתאים לתוכן
-            minHeight: "400px", // גובה מינימלי של 400px (ניתן לשנות לערך אחר לפי הצורך)
+            minHeight: "600px", // גובה מינימלי של 400px (ניתן לשנות לערך אחר לפי הצורך)
             paddingLeft: "10%",
           }}
         >

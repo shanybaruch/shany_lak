@@ -6,11 +6,15 @@ function Footer() {
     <div>
       <Box
         sx={{
-          backgroundColor: "#d7ccc8",
+          backgroundColor: "transparent", // שקיפות מלאה כדי לראות את הרקע מאחור
           color: "black",
           textAlign: "center",
           py: 1, // מרווח אנכי
-          mt: "auto",
+          position: "fixed", // מיקום קבוע בתחתית המסך
+          bottom: 0, // מיקום בתחתית הדף
+          left: 0,
+          width: "100%", // רוחב מלא
+          zIndex: 10, // כדי להיות מעל רכיבים אחרים
         }}
       >
         <Typography variant="body2">

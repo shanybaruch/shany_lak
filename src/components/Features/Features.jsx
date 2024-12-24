@@ -16,21 +16,12 @@ function Features() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById("Features");
-      const sectionTop = section.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
+    // הפעלת האנימציה מיד עם טעינת הקומפוננטה
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
 
-      if (sectionTop < windowHeight * 0.8) {
-        setIsVisible(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   const features = [

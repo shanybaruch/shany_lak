@@ -2,159 +2,115 @@ import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Box,
   Button,
   Dialog,
   DialogContent,
 } from "@mui/material";
+import { Link } from "react-router-dom"; // ייבוא Link מ-react-router-dom
 import FormSignIn from "../Formsignin/Formsignin";
 
 function Navbar() {
-  const [activeButton, setActiveButton] = useState("home"); // שמור את הכפתור הפעיל
-  const [open, setOpen] = useState(false); // מצב של פתיחת וסגירת החלון
+  const [activeButton, setActiveButton] = useState("home");
+  const [open, setOpen] = useState(false);
 
-  // פונקציות לפתיחה וסגירה של ה-Dialog
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName); // עדכן את הכפתור שנלחץ
+    setActiveButton(buttonName);
   };
 
   return (
-    <AppBar  position="static" elevation={0}  sx={{ backgroundColor: "#d7ccc8", color: "#a1887f" }}>
-  <Toolbar>
-    {/* לוגו בצד שמאל
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        
-        cursor: "pointer",
-      }}
-    >
-      <Box
-        component="img"
-        src="/butterflyback.png" // הנתיב לתמונה (ודאי שהלוגו נמצא ב-public)
-        alt="Logo"
-        sx={{
-          width: 95, // גודל התמונה
-          height: 95,
-          marginRight: 1, // רווח בין התמונה לטקסט
-        }}
-      />
-      <Typography
-        variant="h6"
-        component="div"
-        sx={{
-          fontSize: "18px",
-          color: "#a1887f",
-        }}
-      >
-        {/* Logo */}
-      {/* </Typography>
-    </Box> */}
-
-
-        {/* כפתורי ניווט בצד ימין */}
+    <AppBar position="static" elevation={0} sx={{ backgroundColor: "#d7ccc8", color: "#a1887f" }}>
+      <Toolbar>
+        {/* כפתורי ניווט */}
         <Box
           sx={{
-            justifyContent: "center", // ממרכז את הכפתורים אופקית
-            alignItems: "center", // ממרכז את הכפתורים אנכית
+            justifyContent: "center",
+            alignItems: "center",
             display: "flex",
             gap: 7,
-            py: 2, // מרווח אנכי
+            py: 2,
             mt: "auto",
-            flexGrow: 1, // מרחיב את התיבה כדי למרכז הכל
+            flexGrow: 1,
             color: "black",
-            
           }}
         >
           <Button
-            color="inherit"
-            href="#Home"
+            component={Link} // שימוש ב-Link במקום href
+            to="/"
             onClick={() => handleButtonClick("home")}
             sx={{
               paddingX: 3,
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-              color: activeButton === "home" ? "#a1887f" : "inherit", // צבע משתנה אם לחוץ
-              fontWeight: activeButton === "home" ? "bold" : "normal", // הדגשה אם לחוץ
-              borderBottom: activeButton === "home" ? "0px solid #a1887f" : "none", // קו תחתון אם לחוץ
+              color: activeButton === "home" ? "#a1887f" : "inherit",
+              fontWeight: activeButton === "home" ? "bold" : "normal",
+              borderBottom: activeButton === "home" ? "2px solid #a1887f" : "none",
             }}
           >
             Home
           </Button>
           <Button
-            color="inherit"
-            href="#About"
+            component={Link}
+            to="/about"
             onClick={() => handleButtonClick("about")}
             sx={{
               paddingX: 3,
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-
               color: activeButton === "about" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "about" ? "bold" : "normal",
-              borderBottom: activeButton === "about" ? "0px solid #a1887f" : "none",
+              borderBottom: activeButton === "about" ? "2px solid #a1887f" : "none",
             }}
           >
             About
           </Button>
-         
           <Button
-
-            color="inherit"
-            href="#Features"
+            component={Link}
+            to="/features"
             onClick={() => handleButtonClick("features")}
             sx={{
               paddingX: 3,
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-          
               color: activeButton === "features" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "features" ? "bold" : "normal",
-              borderBottom: activeButton === "features" ? "0px solid #a1887f" : "none",
+              borderBottom: activeButton === "features" ? "2px solid #a1887f" : "none",
             }}
           >
             Features
           </Button>
-
           <Button
-            color="inherit"
-            href="#Contact"
+            component={Link}
+            to="/contact"
             onClick={() => handleButtonClick("contact")}
             sx={{
               paddingX: 3,
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-         
               color: activeButton === "contact" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "contact" ? "bold" : "normal",
-              borderBottom: activeButton === "contact" ? "0px solid #a1887f" : "none",
+              borderBottom: activeButton === "contact" ? "2px solid #a1887f" : "none",
             }}
           >
             Contact
           </Button>
-
-          {/* כפתור לפתיחת הדיאלוג */}
           <Button
-            color="inherit"
             onClick={handleOpen}
             sx={{
               paddingX: 3,
               paddingY: 2,
               height: "60px",
               fontSize: "14px",
-         
               color: activeButton === "signin" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "signin" ? "bold" : "normal",
-              borderBottom: activeButton === "signin" ? "0px solidrgb(239, 223, 217)" : "none",
+              borderBottom: activeButton === "signin" ? "2px solidrgb(239, 223, 217)" : "none",
             }}
           >
             Sign In
@@ -165,7 +121,7 @@ function Navbar() {
       {/* דיאלוג להצגת טופס ההתחברות */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogContent>
-          <FormSignIn /> {/* כאן מוצגת הקומפוננטה של טופס ההתחברות */}
+          <FormSignIn />
         </DialogContent>
       </Dialog>
     </AppBar>

@@ -7,12 +7,14 @@ import Contact from "./components/Contact/Contact";
 import Features from "./components/Features/Features";
 import Footer from "./components/Footer/Footer";
 import Calendar from "./components/Calendar/Calendar";
-import FormSignUp from "./components/Formsignup/Formsignup"; // ייבוא רכיב יצירת יוזר
+import FormSignUp from "./components/Formsignup/Formsignup";
+import ScrollToTop from "./components/Scrolltotop/Scrolltotop.jsx"; 
 
 function App() {
   return (
     <Router>
-      <div>
+     
+      <ScrollToTop /> {/* רכיב שמגלגל לראש הדף */}
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,7 +25,7 @@ function App() {
           <Route path="/signup" element={<FormSignUp />} /> {/* נתיב חדש ל-Sign Up */}
         </Routes>
         <Footer />
-      </div>
+     
     </Router>
   );
 }
