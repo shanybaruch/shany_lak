@@ -38,7 +38,7 @@ function Navbar() {
           }}
         >
           <Button
-            component={Link} // שימוש ב-Link במקום href
+            component={Link}
             to="/"
             onClick={() => handleButtonClick("home")}
             sx={{
@@ -121,7 +121,7 @@ function Navbar() {
       {/* דיאלוג להצגת טופס ההתחברות */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogContent>
-          <FormSignIn />
+          <FormSignIn onClose={handleClose} /> {/* מעבירים את handleClose כפרופס */}
         </DialogContent>
       </Dialog>
     </AppBar>

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, TextField, Button, Typography, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function FormSignIn() {
+function FormSignIn({ onClose }) { // הוספת פרופס כדי לסגור את הדיאלוג מבחוץ
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -11,6 +11,9 @@ function FormSignIn() {
   };
 
   const handleSignUp = () => {
+    if (onClose) {
+      onClose(); // סגירת חלון ההתחברות
+    }
     navigate("/signup"); // ניווט לדף ההרשמה
   };
 
@@ -31,7 +34,11 @@ function FormSignIn() {
         margin: "auto",
       }}
     >
-      <Typography variant="h5" textAlign="center" sx={{ mb: 3, fontWeight: "bold" }}>
+      <Typography
+        variant="h5"
+        textAlign="center"
+        sx={{ mb: 3, fontWeight: "bold" }}
+      >
         Sign In
       </Typography>
 
@@ -80,7 +87,7 @@ function FormSignIn() {
         <Link
           component="button"
           variant="body2"
-          onClick={handleSignUp}
+          onClick={handleSignUp} // קריאה לפונקציה שמסוגרת את הדיאלוג
           sx={{
             color: "primary.main",
             textDecoration: "underline",
