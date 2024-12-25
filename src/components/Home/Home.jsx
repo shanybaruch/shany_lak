@@ -70,7 +70,6 @@ function Home() {
               <Typography
                 variant="h2" // גודל שונה עבור השורה הראשונה
                 sx={{
-                  fontFamily: "Segoe UI",
                   letterSpacing: 5,
                   color: "#555",
                   padding:1,
@@ -83,10 +82,11 @@ function Home() {
               <Typography
                 variant="h1" // גודל שונה עבור השורה השנייה
                 sx={{
-                  fontFamily: "Segoe UI",
+                  fontFamily: "",
                   fontWeight: "bold",
-                  color: "black",
+                  // color: "black",
                   padding:1,
+                  color: "#bcaaa4", // צבע רקע פנימי
                 }}
               >
                 PROFESSIONAL
@@ -96,7 +96,6 @@ function Home() {
               <Typography
                 variant="h2" // גודל שונה עבור השורה השלישית
                 sx={{
-                  fontFamily: "Segoe UI",
                   color: "#777",
                   padding:1,
                   letterSpacing: 5,
@@ -109,10 +108,11 @@ function Home() {
               <Typography
                 variant="h2" // גודל שונה עבור השורה הרביעית
                 sx={{
-                  fontFamily: "Segoe UI",
                   fontWeight: "bold",
-                  color: "#000",
+                  color: "white",
                   letterSpacing: 1,
+                  backgroundColor:"#bcaaa4",
+                  display: "inline-block", // שומר שהרקע מתאים לרוחב הטקסט בלבד
 
                 }}
               >
@@ -135,7 +135,7 @@ function Home() {
                 borderRadius: "2px ",
                 marginBottom: 10,
                 marginTop: 3,
-               marginTop:7,
+                marginTop:9,
                 "&:hover": {
                   backgroundColor: "rgba(0, 0, 0, 0.05)",
                 },
