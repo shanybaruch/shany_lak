@@ -6,74 +6,96 @@ function About() {
     <div id="About">
       <Box
         sx={{
-          backgroundImage: `url('/shaishback.png')`, // נתיב לתמונה
+          backgroundImage: `url('/lakbattleback.png')`, // נתיב לתמונה
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh",
+          position: "relative", // מאפשר שכבות
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          color: "white",
-          padding: 4,
+          color: "black",
         }}
       >
-        {/* טקסט עליון */}
-        <Typography
-          variant="subtitle1"
+        {/* שכבת רקע שקופה */}
+        <Box
           sx={{
-            fontFamily: "serif",
-            letterSpacing: 2,
-            marginBottom: 2,
-            fontSize: "18px",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // צבע עם שקיפות
+            zIndex: 1, // כדי להבטיח שזה מתחת לתוכן
           }}
-        >
-          GIA & GIUSTINA JEWELRY
-        </Typography>
+        ></Box>
 
-        {/* טקסט כותרת */}
-        <Typography
-          variant="h2"
+        {/* תוכן מעל השכבה השקופה */}
+        <Box
           sx={{
-            fontFamily: "Georgia, serif",
-            fontWeight: "bold",
-            lineHeight: 1.2,
-            marginBottom: 4,
+            position: "relative", // כדי להיות מעל השכבה השקופה
+            zIndex: 2, // גבוה יותר מהשכבה השקופה
+            padding: 4,
           }}
         >
-          Your dream in <br />
+          {/* טקסט עליון */}
           <Typography
-            component="span"
-            variant="h2"
+            variant="subtitle1"
             sx={{
-              fontStyle: "italic",
-              fontWeight: "normal",
+              fontFamily: "serif",
+              letterSpacing: 2,
+              marginBottom: 2,
+              fontSize: "18px",
             }}
           >
-            jewelry
-          </Typography>{" "}
-          form
-        </Typography>
+            GIA & GIUSTINA JEWELRY
+          </Typography>
 
-        {/* כפתור */}
-        <Button
-          variant="outlined"
-          sx={{
-            color: "white",
-            borderColor: "white",
-            borderRadius: 0,
-            paddingX: 4,
-            paddingY: 1.5,
-            fontSize: "16px",
-            "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.2)",
-              borderColor: "white",
-            },
-          }}
-        >
-          LEARN MORE
-        </Button>
+          {/* טקסט כותרת */}
+          <Typography
+            variant="h2"
+            sx={{
+              fontFamily: "Georgia, serif",
+              fontWeight: "bold",
+              lineHeight: 1.2,
+              marginBottom: 4,
+            }}
+          >
+            Your dream in <br />
+            <Typography
+              component="span"
+              variant="h2"
+              sx={{
+                fontStyle: "italic",
+                fontWeight: "normal",
+              }}
+            >
+              jewelry
+            </Typography>{" "}
+            form
+          </Typography>
+
+          {/* כפתור */}
+          <Button
+            variant="outlined"
+            sx={{
+              color: "black",
+              borderColor: "black",
+              borderRadius: 0,
+              paddingX: 4,
+              paddingY: 1.5,
+              fontSize: "16px",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.4)",
+                borderColor: "black",
+              },
+            }}
+          >
+            LEARN MORE
+          </Button>
+        </Box>
       </Box>
     </div>
   );

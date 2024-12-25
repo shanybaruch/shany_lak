@@ -1,151 +1,110 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 
 function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true); // הפעלת האנימציה לאחר טעינת הקומפוננטה
-    }, 100);
-
-    return () => clearTimeout(timer); // ניקוי הטיימר
-  }, []);
-
   return (
     <div id="Home">
-      <Navbar />
+      <Navbar
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 5, // ערך גבוה כדי להבטיח שהוא מעל הכל
+      }} />
       <Box
         sx={{
-          backgroundColor: "#d7ccc8",
+          backgroundImage: `url('/lakbattleback.png')`, // נתיב לתמונה
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           minHeight: "100vh",
-          display: "flex", // שימוש ב-Flexbox
-          flexDirection: "column", // אלמנטים בסידור אנכי
-          justifyContent: "center", // ממרכז אנכית
-          alignItems: "center", // ממרכז אופקית
+          position: "relative", // מאפשר שכבות
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           textAlign: "center",
-          color: "#333",
-          padding: 2,
-          opacity: isVisible ? 1 : 0, // שקיפות לאנימציה
-          transform: isVisible ? "translateY(0)" : "translateY(20px)", // תנועה מלמטה למעלה
-          transition: "all 0.8s ease-in-out", // אנימציה חלקה
+          color: "black",
         }}
       >
-        {/* תיבה פנימית עם רקע שונה */}
+        {/* שכבת רקע שקופה */}
         <Box
           sx={{
-            backgroundColor: "#f5f5f5", // צבע רקע פנימי
-            paddingTop: 10,
-            borderRadius: 2,
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
             width: "100%",
-            maxWidth: "1300px",
-            height: "auto",
-            minHeight: "600px",
-            marginBottom: 11,
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // צבע עם שקיפות
+            zIndex: 1, // כדי להבטיח שזה מתחת לתוכן
+          }}
+        ></Box>
+
+        {/* תוכן מעל השכבה השקופה */}
+        <Box
+          sx={{
+            position: "relative", // כדי להיות מעל השכבה השקופה
+            zIndex: 2, // גבוה יותר מהשכבה השקופה
+            padding: 4,
           }}
         >
-          <Box sx={{}}>
-            {/* לוגו */}
+          {/* טקסט עליון */}
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontFamily: "serif",
+              letterSpacing: 2,
+              marginBottom: 2,
+              fontSize: "18px",
+            }}
+          >
+            GIA & GIUSTINA JEWELRY
+          </Typography>
+
+          {/* טקסט כותרת */}
+          <Typography
+            variant="h2"
+            sx={{
+              fontFamily: "Georgia, serif",
+              fontWeight: "bold",
+              lineHeight: 1.2,
+              marginBottom: 4,
+            }}
+          >
+            Your dream in <br />
             <Typography
-              variant="subtitle2"
+              component="span"
+              variant="h2"
               sx={{
-                fontFamily: "sans-serif",
-                letterSpacing: 2,
-                marginBottom: 6,
+                fontStyle: "italic",
+                fontWeight: "normal",
               }}
             >
-              NAIL STUDIO
-            </Typography>
+              nails
+            </Typography>{" "}
+            form
+          </Typography>
 
-            {/* טקסט ראשי */}
-            <Box>
-              {/* שורה 1 */}
-              <Typography
-                variant="h2" // גודל שונה עבור השורה הראשונה
-                sx={{
-                  letterSpacing: 5,
-                  color: "#555",
-                  padding:1,
-                }}
-              >
-                THE BEST
-              </Typography>
-
-              {/* שורה 2 */}
-              <Typography
-                variant="h1" // גודל שונה עבור השורה השנייה
-                sx={{
-                  fontFamily: "",
-                  fontWeight: "bold",
-                  // color: "black",
-                  padding:1,
-                  color: "#bcaaa4", // צבע רקע פנימי
-                }}
-              >
-                PROFESSIONAL
-              </Typography>
-
-              {/* שורה 3 */}
-              <Typography
-                variant="h2" // גודל שונה עבור השורה השלישית
-                sx={{
-                  color: "#777",
-                  padding:1,
-                  letterSpacing: 5,
-                }}
-              >
-                CARE FOR
-              </Typography>
-
-              {/* שורה 4 */}
-              <Typography
-                variant="h2" // גודל שונה עבור השורה הרביעית
-                sx={{
-                  fontWeight: "bold",
-                  color: "white",
-                  letterSpacing: 1,
-                  backgroundColor:"#bcaaa4",
-                  display: "inline-block", // שומר שהרקע מתאים לרוחב הטקסט בלבד
-
-                }}
-              >
-                YOUR NAILS
-              </Typography>
-           
-            </Box>
-
-            {/* כפתור */}
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#555",
-                borderColor: "#333",
-                paddingX: 3,
-                paddingY: 1,
-                fontWeight: "bold",
-                fontSize: "13px",
-                border: "2px solid grey",
-                borderRadius: "2px ",
-                marginBottom: 10,
-                marginTop: 3,
-                marginTop:9,
-                "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.05)",
-                },
-              }}
-            >
-              BOOK AN APPOINTMENT
-            </Button>
-          </Box>
+          {/* כפתור */}
+          <Button
+            variant="outlined"
+            sx={{
+              color: "black",
+              borderColor: "black",
+              borderRadius: 0,
+              paddingX: 4,
+              paddingY: 1.5,
+              fontSize: "16px",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.4)",
+                borderColor: "black",
+              },
+            }}
+          >
+            LEARN MORE
+          </Button>
         </Box>
-        <Footer />
       </Box>
     </div>
   );

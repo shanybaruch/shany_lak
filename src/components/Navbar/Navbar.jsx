@@ -7,7 +7,7 @@ import {
   Dialog,
   DialogContent,
 } from "@mui/material";
-import { Link } from "react-router-dom"; // ייבוא Link מ-react-router-dom
+import { Link } from "react-router-dom";
 import FormSignIn from "../Formsignin/Formsignin";
 
 function Navbar() {
@@ -22,9 +22,19 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" elevation={0} sx={{ backgroundColor: "#d7ccc8", color: "#a1887f" }}>
+    <AppBar
+      elevation={0}
+      sx={{
+        backgroundColor: "rgba(255, 255, 255, 0.8)", // שקוף עם רקע לבן
+        color: "black",
+        zIndex: 10, // גבוה יותר משאר האלמנטים
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+      }}
+    >
       <Toolbar>
-        {/* כפתורי ניווט */}
         <Box
           sx={{
             justifyContent: "center",
@@ -32,7 +42,6 @@ function Navbar() {
             display: "flex",
             gap: 7,
             py: 2,
-            mt: "auto",
             flexGrow: 1,
             color: "black",
           }}
@@ -44,11 +53,11 @@ function Navbar() {
             sx={{
               paddingX: 3,
               paddingY: 2,
-              height: "60px",
               fontSize: "14px",
               color: activeButton === "home" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "home" ? "bold" : "normal",
-              borderBottom: activeButton === "home" ? "2px solid #a1887f" : "none",
+              borderBottom:
+                activeButton === "home" ? "2px solid #a1887f" : "none",
             }}
           >
             Home
@@ -60,11 +69,11 @@ function Navbar() {
             sx={{
               paddingX: 3,
               paddingY: 2,
-              height: "60px",
               fontSize: "14px",
               color: activeButton === "about" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "about" ? "bold" : "normal",
-              borderBottom: activeButton === "about" ? "2px solid #a1887f" : "none",
+              borderBottom:
+                activeButton === "about" ? "2px solid #a1887f" : "none",
             }}
           >
             About
@@ -76,14 +85,14 @@ function Navbar() {
             sx={{
               paddingX: 3,
               paddingY: 2,
-              height: "60px",
               fontSize: "14px",
               color: activeButton === "features" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "features" ? "bold" : "normal",
-              borderBottom: activeButton === "features" ? "2px solid #a1887f" : "none",
+              borderBottom:
+                activeButton === "features" ? "2px solid #a1887f" : "none",
             }}
           >
-            Features
+            Services
           </Button>
           <Button
             component={Link}
@@ -92,11 +101,11 @@ function Navbar() {
             sx={{
               paddingX: 3,
               paddingY: 2,
-              height: "60px",
               fontSize: "14px",
               color: activeButton === "contact" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "contact" ? "bold" : "normal",
-              borderBottom: activeButton === "contact" ? "2px solid #a1887f" : "none",
+              borderBottom:
+                activeButton === "contact" ? "2px solid #a1887f" : "none",
             }}
           >
             Contact
@@ -106,11 +115,13 @@ function Navbar() {
             sx={{
               paddingX: 3,
               paddingY: 2,
-              height: "60px",
               fontSize: "14px",
               color: activeButton === "signin" ? "#a1887f" : "inherit",
               fontWeight: activeButton === "signin" ? "bold" : "normal",
-              borderBottom: activeButton === "signin" ? "2px solidrgb(239, 223, 217)" : "none",
+              borderBottom:
+                activeButton === "signin"
+                  ? "2px solidrgb(239, 223, 217)"
+                  : "none",
             }}
           >
             Sign In
@@ -118,10 +129,9 @@ function Navbar() {
         </Box>
       </Toolbar>
 
-      {/* דיאלוג להצגת טופס ההתחברות */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogContent>
-          <FormSignIn onClose={handleClose} /> {/* מעבירים את handleClose כפרופס */}
+          <FormSignIn onClose={handleClose} />
         </DialogContent>
       </Dialog>
     </AppBar>
