@@ -5,21 +5,14 @@ import Navbar from "../Navbar/Navbar";
 function Home() {
   return (
     <div id="Home">
-      <Navbar
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        zIndex: 5, // ערך גבוה כדי להבטיח שהוא מעל הכל
-      }} />
+      <Navbar />
       <Box
         sx={{
-          backgroundImage: `url('/lakbattleback.png')`, // נתיב לתמונה
+          backgroundImage: `url('/lakbattleback.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh",
-          position: "relative", // מאפשר שכבות
+          position: "relative",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -28,7 +21,6 @@ function Home() {
           color: "black",
         }}
       >
-        {/* שכבת רקע שקופה */}
         <Box
           sx={{
             position: "absolute",
@@ -36,20 +28,16 @@ function Home() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // צבע עם שקיפות
-            zIndex: 1, // כדי להבטיח שזה מתחת לתוכן
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
         ></Box>
 
-        {/* תוכן מעל השכבה השקופה */}
         <Box
           sx={{
-            position: "relative", // כדי להיות מעל השכבה השקופה
-            zIndex: 2, // גבוה יותר מהשכבה השקופה
+            position: "relative",
             padding: 4,
           }}
         >
-          {/* טקסט עליון */}
           <Typography
             variant="subtitle1"
             sx={{
@@ -59,34 +47,42 @@ function Home() {
               fontSize: "18px",
             }}
           >
-            GIA & GIUSTINA JEWELRY
+            SHANY BARUCH NAIL STUDIO
           </Typography>
 
-          {/* טקסט כותרת */}
           <Typography
-            variant="h2"
+            variant="h3"
             sx={{
-              fontFamily: "Georgia, serif",
+              fontFamily: "Segoe UI",
+              lineHeight: 1.5,
               fontWeight: "bold",
-              lineHeight: 1.2,
               marginBottom: 4,
             }}
           >
-            Your dream in <br />
+            THE BEST {" "}
+            <Typography
+              component="span"
+              variant="h3"
+              sx={{
+                fontFamily: "Segoe UI",
+              }}
+            >
+              FOR YOUR {" "} <br />
+            </Typography >
             <Typography
               component="span"
               variant="h2"
               sx={{
+                fontFamily: "Georgia, serif", // שינוי הפונט עבור המילה NAILS
                 fontStyle: "italic",
-                fontWeight: "normal",
+                fontWeight: "bold",
+                letterSpacing: 6,
               }}
             >
-              nails
-            </Typography>{" "}
-            form
+              NAILS
+            </Typography>
           </Typography>
 
-          {/* כפתור */}
           <Button
             variant="outlined"
             sx={{
@@ -98,7 +94,6 @@ function Home() {
               fontSize: "16px",
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 0.4)",
-                borderColor: "black",
               },
             }}
           >
