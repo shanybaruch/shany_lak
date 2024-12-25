@@ -17,7 +17,7 @@ function Footer() {
           zIndex: 10, // כדי להיות מעל רכיבים אחרים
         }}
       >
-        <Typography variant="body2">
+        <Typography variant="overline">
           © {new Date().getFullYear()} All Rights Reserved to Shany Baruch
         </Typography>
       </Box>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
 
 function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,88 +16,136 @@ function Home() {
 
   return (
     <div id="Home">
+      <Navbar />
       <Box
         sx={{
-          backgroundColor: "#d7ccc8", // צבע רקע ראשי
-          minHeight: "100vh", // גובה של המסך כולו
+          backgroundColor: "#d7ccc8",
+          minHeight: "100vh",
           display: "flex", // שימוש ב-Flexbox
           flexDirection: "column", // אלמנטים בסידור אנכי
           justifyContent: "center", // ממרכז אנכית
           alignItems: "center", // ממרכז אופקית
-          textAlign: "center", // טקסט במרכז
-          color: "#333", 
-          padding: 2, 
+          textAlign: "center",
+          color: "#333",
+          padding: 2,
+          opacity: isVisible ? 1 : 0, // שקיפות לאנימציה
+          transform: isVisible ? "translateY(0)" : "translateY(20px)", // תנועה מלמטה למעלה
+          transition: "all 0.8s ease-in-out", // אנימציה חלקה
         }}
       >
         {/* תיבה פנימית עם רקע שונה */}
         <Box
           sx={{
             backgroundColor: "#f5f5f5", // צבע רקע פנימי
-            padding: 5,
-            borderRadius: 4, // פינות מעוגלות
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // צל קל
+            paddingTop: 10,
+            borderRadius: 2,
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "center",
-            opacity: isVisible ? 1 : 0, // שקיפות לאנימציה
-            transform: isVisible ? "translateY(0)" : "translateY(20px)", // תנועה מלמטה למעלה
-            transition: "all 0.8s ease-in-out", // אנימציה חלקה
-            width: "80%", // רוחב 80% מהרוחב הכולל של הדף (אפשר לשנות לערכים אחרים כמו px)
-            maxWidth: "1000px", // רוחב מקסימלי של 900px
-            height: "auto", // גובה אוטומטי שיתאים לתוכן
-            minHeight: "600px", // גובה מינימלי של 400px (ניתן לשנות לערך אחר לפי הצורך)
-            paddingLeft: "10%",
+            width: "100%",
+            maxWidth: "1300px",
+            height: "auto",
+            minHeight: "600px",
+            marginBottom: 11,
           }}
         >
           <Box sx={{}}>
             {/* לוגו */}
             <Typography
-              variant="h6"
+              variant="subtitle2"
               sx={{
                 fontFamily: "sans-serif",
-                fontWeight: "bold",
                 letterSpacing: 2,
-                marginBottom: 2,
+                marginBottom: 6,
               }}
             >
               NAIL STUDIO
             </Typography>
 
             {/* טקסט ראשי */}
-            <Typography
-              variant="h2"
-              sx={{
-                fontFamily: "serif",
-                fontWeight: "bold",
-                lineHeight: 1.5,
-                maxWidth: "800px",
-                marginBottom: 4,
-              }}
-            >
-              Shany <br />
-              Baruch
-            </Typography>
+            <Box>
+              {/* שורה 1 */}
+              <Typography
+                variant="h2" // גודל שונה עבור השורה הראשונה
+                sx={{
+                  fontFamily: "Segoe UI",
+                  letterSpacing: 5,
+                  color: "#555",
+                  padding:1,
+                }}
+              >
+                THE BEST
+              </Typography>
+
+              {/* שורה 2 */}
+              <Typography
+                variant="h1" // גודל שונה עבור השורה השנייה
+                sx={{
+                  fontFamily: "Segoe UI",
+                  fontWeight: "bold",
+                  color: "black",
+                  padding:1,
+                }}
+              >
+                PROFESSIONAL
+              </Typography>
+
+              {/* שורה 3 */}
+              <Typography
+                variant="h2" // גודל שונה עבור השורה השלישית
+                sx={{
+                  fontFamily: "Segoe UI",
+                  color: "#777",
+                  padding:1,
+                  letterSpacing: 5,
+                }}
+              >
+                CARE FOR
+              </Typography>
+
+              {/* שורה 4 */}
+              <Typography
+                variant="h2" // גודל שונה עבור השורה הרביעית
+                sx={{
+                  fontFamily: "Segoe UI",
+                  fontWeight: "bold",
+                  color: "#000",
+                  letterSpacing: 1,
+
+                }}
+              >
+                YOUR NAILS
+              </Typography>
+           
+            </Box>
 
             {/* כפתור */}
             <Button
               variant="outlined"
               sx={{
-                color: "#333",
+                color: "#555",
                 borderColor: "#333",
-                paddingX: 4,
-                paddingY: 1.5,
-                borderRadius: "50px",
+                paddingX: 3,
+                paddingY: 1,
                 fontWeight: "bold",
+                fontSize: "13px",
+                border: "2px solid grey",
+                borderRadius: "2px ",
+                marginBottom: 10,
+                marginTop: 3,
+               marginTop:7,
                 "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.05)", // רקע עדין בהובר
+                  backgroundColor: "rgba(0, 0, 0, 0.05)",
                 },
               }}
             >
-              About me
+              BOOK AN APPOINTMENT
             </Button>
           </Box>
         </Box>
+        <Footer />
       </Box>
     </div>
   );
