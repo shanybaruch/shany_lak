@@ -97,7 +97,7 @@ function Home() {
               },
             }}
           >
-            LEARN MORE
+            BOOK AN APPOINTMENT
           </Button>
         </Box>
       </Box>
