@@ -35,7 +35,6 @@ function Home() {
         <Box
           sx={{
             position: "relative",
-            padding: 4,
           }}
         >
           <Typography
@@ -43,7 +42,7 @@ function Home() {
             sx={{
               fontFamily: "serif",
               letterSpacing: 2,
-              marginBottom: 2,
+              marginBottom: 6,
               fontSize: "18px",
             }}
           >
@@ -73,9 +72,9 @@ function Home() {
               component="span"
               variant="h2"
               sx={{
-                fontFamily: "Georgia, serif", // שינוי הפונט עבור המילה NAILS
+                fontFamily: "unset", // שינוי הפונט עבור המילה NAILS
                 fontStyle: "italic",
-                fontWeight: "bold",
+                // fontWeight: "bold",
                 letterSpacing: 6,
               }}
             >

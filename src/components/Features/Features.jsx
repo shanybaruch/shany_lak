@@ -6,7 +6,9 @@ import {
   Grid,
   Card,
   CardContent,
+  Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // ניווט בין עמודים
 import PersonIcon from "@mui/icons-material/Person";
 import CatalogIcon from "@mui/icons-material/MenuBook";
 import PriceCheckIcon from "@mui/icons-material/AttachMoney";
@@ -14,11 +16,12 @@ import EventIcon from "@mui/icons-material/Event";
 
 function Features() {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate(); // הוק לניווט
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 100); // עיכוב קצר לאפקט ציפה
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -42,7 +45,18 @@ function Features() {
     {
       title: "Making an appointment",
       icon: <EventIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
-      description: "Schedule your next appointment here",
+      description: (
+        <>
+          Schedule your next appointment{" "}
+          <Button
+            variant="contained"
+            sx={{ marginTop: 2, backgroundColor: "#8d6e63", color: "#fff" }}
+            onClick={() => navigate("/calendar")} // ניווט לעמוד הקלנדר
+          >
+            Open Calendar
+          </Button>
+        </>
+      ),
     },
   ];
 
@@ -62,7 +76,6 @@ function Features() {
           textAlign: "center",
         }}
       >
-        {/* שכבת רקע שקופה */}
         <Box
           sx={{
             position: "absolute",
@@ -75,7 +88,6 @@ function Features() {
           }}
         ></Box>
 
-        {/* תוכן מעל הרקע השקוף */}
         <Container
           sx={{
             position: "relative",
@@ -90,7 +102,6 @@ function Features() {
             transition: "all 0.8s ease-in-out",
           }}
         >
-          
           <Grid container spacing={6}>
             {features.map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>

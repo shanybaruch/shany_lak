@@ -1,34 +1,113 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  IconButton,
-} from "@mui/material";
-import { CalendarPicker } from "@mui/lab";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Grid, Card, Button } from "@mui/material";
 
-function Calendar() {
-  const [selectedDate, setSelectedDate] = useState(null);
+const WEEK_DAYS = ["א", "ב", "ג", "ד", "ה", "ו", "ש"];
 
-  // תאריכים פנויים (אתה יכול להגדיר כאן את התאריכים הפנויים שלך)
-  const availableDates = [
-    new Date(2024, 11, 24), // 24 בדצמבר 2024
-    new Date(2024, 11, 25), // 25 בדצמבר 2024
-    new Date(2024, 11, 26),
-    new Date(2025, 0, 2),
-  ];
+const generateCalendarDays = (year, month) => {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const days = [];
+  for (let i = 1; i <= lastDay.getDate(); i++) {
+    days.push(new Date(year, month, i));
+  }
+  return days;
+};
 
-  // פונקציה לבדוק אם תאריך זמין
-  const isDateAvailable = (date) => {
-    return availableDates.some(
-      (availableDate) =>
-        date.toDateString() === availableDate.toDateString()
-    );
+const Calendar = () => {
+  const [appointments, setAppointments] = useState({});
+  const [isVisible, setIsVisible] = useState(false);
+  const today = new Date();
+
+  useEffect(() => {
+    // גלילה תמיד למעלה
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+
+    // אנימציית הופעה
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const currentMonthDays = generateCalendarDays(
+    today.getFullYear(),
+    today.getMonth()
+  );
+  const nextMonthDays = generateCalendarDays(
+    today.getFullYear(),
+    today.getMonth() + 1
+  );
+
+  const handleAppointmentToggle = (date) => {
+    const dateKey = date.toDateString();
+    setAppointments((prev) => ({
+      ...prev,
+      [dateKey]: !prev[dateKey],
+    }));
   };
+
+  const renderCalendar = (days, monthName) => (
+    <Card
+      elevation={4}
+      sx={{
+        padding: 2,
+        margin: 2,
+        backgroundColor: "#f9f9f9",
+        borderRadius: "12px",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(50px)",
+        transition: "all 0.8s ease-in-out",
+      }}
+    >
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          fontWeight: "bold",
+          marginBottom: 3,
+          color: "#8d6e63",
+        }}
+      >
+        {monthName}
+      </Typography>
+      <Grid container spacing={1}>
+        {WEEK_DAYS.map((day) => (
+          <Grid item xs={12 / 7} key={day} sx={{ textAlign: "center" }}>
+            <Typography variant="subtitle2" fontWeight="bold">
+              {day}
+            </Typography>
+          </Grid>
+        ))}
+        {days.map((date) => (
+          <Grid
+            item
+            xs={12 / 7}
+            key={date.toDateString()}
+            sx={{ textAlign: "center" }}
+          >
+            <Button
+              onClick={() => handleAppointmentToggle(date)}
+              sx={{
+                width: "100%",
+                height: "50px",
+                backgroundColor: appointments[date.toDateString()]
+                  ? "#4caf50"
+                  : "#e0e0e0",
+                color: appointments[date.toDateString()] ? "white" : "black",
+                "&:hover": {
+                  backgroundColor: appointments[date.toDateString()]
+                    ? "#388e3c"
+                    : "#bdbdbd",
+                },
+              }}
+            >
+              {date.getDate()}
+            </Button>
+          </Grid>
+        ))}
+      </Grid>
+    </Card>
+  );
 
   return (
     <Box
@@ -36,10 +115,12 @@ function Calendar() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: 4,
-        backgroundColor: "#fdf8f4",
-        borderRadius: 4,
-        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+        padding: 6,
+        backgroundColor: "#d7ccc8",
+        minHeight: "100vh",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(50px)",
+        transition: "all 0.8s ease-in-out",
       }}
     >
       <Typography
@@ -48,99 +129,30 @@ function Calendar() {
           fontWeight: "bold",
           color: "#8d6e63",
           textAlign: "center",
-          marginBottom: 4,
+          marginBottom: 8,
         }}
       >
-        Schedule Your Appointment
+        Schedule a meeting
       </Typography>
-
       <Grid container spacing={4} justifyContent="center">
-        {/* לוח שנה לחודש הנוכחי */}
-        <Grid item xs={12} sm={6} md={5}>
-          <Card elevation={3} sx={{ padding: 2 }}>
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}
-            >
-              Current Month
-            </Typography>
-            <CalendarPicker
-              date={selectedDate}
-              onChange={(newDate) => setSelectedDate(newDate)}
-              renderDay={(day, _value, DayComponentProps) => {
-                const isAvailable = isDateAvailable(day);
-
-                return (
-                  <IconButton
-                    {...DayComponentProps}
-                    sx={{
-                      backgroundColor: isAvailable
-                        ? "rgba(76, 175, 80, 0.2)"
-                        : "rgba(244, 67, 54, 0.2)",
-                      borderRadius: 1,
-                      padding: "6px",
-                    }}
-                  >
-                    {isAvailable ? (
-                      <CheckCircleIcon
-                        sx={{ color: "#4caf50", fontSize: "1rem" }}
-                      />
-                    ) : (
-                      <HighlightOffIcon
-                        sx={{ color: "#f44336", fontSize: "1rem" }}
-                      />
-                    )}
-                  </IconButton>
-                );
-              }}
-            />
-          </Card>
+        <Grid item xs={12} sm={6}>
+          {renderCalendar(
+            currentMonthDays,
+            today.toLocaleString("he-IL", { month: "long" })
+          )}
         </Grid>
-
-        {/* לוח שנה לחודש הבא */}
-        <Grid item xs={12} sm={6} md={5}>
-          <Card elevation={3} sx={{ padding: 2 }}>
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}
-            >
-              Next Month
-            </Typography>
-            <CalendarPicker
-              date={selectedDate}
-              onChange={(newDate) => setSelectedDate(newDate)}
-              renderDay={(day, _value, DayComponentProps) => {
-                const isAvailable = isDateAvailable(day);
-
-                return (
-                  <IconButton
-                    {...DayComponentProps}
-                    sx={{
-                      backgroundColor: isAvailable
-                        ? "rgba(76, 175, 80, 0.2)"
-                        : "rgba(244, 67, 54, 0.2)",
-                      borderRadius: 1,
-                      padding: "6px",
-                    }}
-                  >
-                    {isAvailable ? (
-                      <CheckCircleIcon
-                        sx={{ color: "#4caf50", fontSize: "1rem" }}
-                      />
-                    ) : (
-                      <HighlightOffIcon
-                        sx={{ color: "#f44336", fontSize: "1rem" }}
-                      />
-                    )}
-                  </IconButton>
-                );
-              }}
-            />
-          </Card>
+        <Grid item xs={12} sm={6}>
+          {renderCalendar(
+            nextMonthDays,
+            new Date(
+              today.getFullYear(),
+              today.getMonth() + 1
+            ).toLocaleString("he-IL", { month: "long" })
+          )}
         </Grid>
       </Grid>
     </Box>
   );
-}
+};
 
 export default Calendar;
