@@ -57,6 +57,7 @@ const Calendar = () => {
     phone: "",
   });
   const [openDialog, setOpenDialog] = useState(false);
+  const [warning, setWarning] = useState(false); // For the warning message
 
   const today = new Date();
 
@@ -66,6 +67,11 @@ const Calendar = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    // Update warning message if needed
+    setWarning(additionalInfo.longNails || additionalInfo.nailFixNeeded);
+  }, [additionalInfo]);
 
   const currentMonthDays = generateCalendarDays(
     today.getFullYear(),
@@ -250,7 +256,7 @@ const Calendar = () => {
         }}
       >
         <DialogTitle sx={{ textAlign: "center", fontWeight: "bold" }}>
-          {clientType === "new" ? " " : ""}
+          {clientType === "new" ? "Sign Up" : "Sign In"}
         </DialogTitle>
         <DialogContent sx={{ overflowY: "auto" }}>
           {clientType === "new" ? <FormSignUp /> : <FormSignIn />}
@@ -373,21 +379,33 @@ const Calendar = () => {
             }
             label="Nail Fix Needed"
           />
-          <br />
-          <Button
-            onClick={handleSaveAppointment}
-            variant="contained"
-            sx={{
-              marginTop: 2,
-              backgroundColor: "#8d6e63",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "#755b4e",
-              },
-            }}
-          >
-            Save Appointment
-          </Button>
+          {warning && (
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#d32f2f",
+                marginTop: 1,
+                fontStyle: "italic",
+              }}
+            >
+              * Please note that the treatment may take longer than usual due to nail condition.
+            </Typography>
+          )}
+          <Box sx={{ marginTop: 2 }}>
+            <Button
+              onClick={handleSaveAppointment}
+              variant="contained"
+              sx={{
+                backgroundColor: "#8d6e63",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#755b4e",
+                },
+              }}
+            >
+              Save Appointment
+            </Button>
+          </Box>
         </Box>
       )}
     </Box>
