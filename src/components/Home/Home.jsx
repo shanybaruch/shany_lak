@@ -3,6 +3,10 @@ import { Box, Typography, Button } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 
 function Home() {
+  const handleOpenNewTab = (url) => {
+    window.open(window.location.origin + url, "_blank"); // פותח את הקישור בחלון חדש עם כתובת בסיס מלאה
+  };
+
   return (
     <div id="Home">
       <Navbar />
@@ -58,7 +62,7 @@ function Home() {
               marginBottom: 4,
             }}
           >
-            THE BEST {" "}
+            THE BEST{" "}
             <Typography
               component="span"
               variant="h3"
@@ -66,15 +70,14 @@ function Home() {
                 fontFamily: "Segoe UI",
               }}
             >
-              FOR YOUR {" "} <br />
-            </Typography >
+              FOR YOUR <br />
+            </Typography>
             <Typography
               component="span"
               variant="h2"
               sx={{
                 fontFamily: "unset", // שינוי הפונט עבור המילה NAILS
                 fontStyle: "italic",
-                // fontWeight: "bold",
                 letterSpacing: 6,
               }}
             >
@@ -84,6 +87,7 @@ function Home() {
 
           <Button
             variant="outlined"
+            onClick={() => handleOpenNewTab("/calendar")} // פותח את Calendar בחלון חדש
             sx={{
               color: "black",
               borderColor: "black",
