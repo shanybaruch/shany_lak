@@ -16,10 +16,9 @@ function Features() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // הפעלת האנימציה מיד עם טעינת הקומפוננטה
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 100);
+    }, 100); // עיכוב קצר לאפקט ציפה
 
     return () => clearTimeout(timer);
   }, []);
@@ -51,40 +50,47 @@ function Features() {
     <div id="Features">
       <Box
         sx={{
+          backgroundImage: `url('/lakbattleback.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#efebe9",
-          padding: 2,
+          position: "relative",
+          textAlign: "center",
         }}
       >
+        {/* שכבת רקע שקופה */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 1,
+          }}
+        ></Box>
+
+        {/* תוכן מעל הרקע השקוף */}
         <Container
           sx={{
-            backgroundColor: "#d7ccc8",
+            position: "relative",
+            zIndex: 2,
+            backgroundColor: "#efebe9",
             padding: "60px",
             borderRadius: "20px",
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
             width: "100%",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(50px)",
+            transition: "all 0.8s ease-in-out",
           }}
         >
-          <Typography
-            variant="h4"
-            textAlign="center"
-            gutterBottom
-            sx={{
-              mb: 10,
-              fontWeight: "bold",
-              color: "white",
-              textShadow: "2px 3px 3px rgba(0, 0, 0, 0.4)",
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(-30px)",
-              transition: "all 0.8s ease-in-out",
-            }}
-          >
-            Visit to..
-          </Typography>
+          
           <Grid container spacing={6}>
             {features.map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -98,7 +104,7 @@ function Features() {
                   }}
                 >
                   <Card
-                    elevation={6}
+                    elevation={8}
                     sx={{
                       borderRadius: 3,
                       transition: "transform 0.3s ease",
