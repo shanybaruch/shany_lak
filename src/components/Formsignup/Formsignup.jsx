@@ -5,65 +5,89 @@ import {
   Box,
   Typography,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
 
 function FormSignUp() {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    emailOrPhone: "",
   });
   const [errors, setErrors] = useState({
-    confirmPassword: "",
+    emailOrPhone: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    if (name === "confirmPassword") {
-      if (value !== formData.password) {
-        setErrors({ ...errors, confirmPassword: "Passwords do not match" });
-      } else {
-        setErrors({ ...errors, confirmPassword: "" });
-      }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // בדיקת אימייל
+    const phoneRegex = /^\d{10}$/; // בדיקת מספר טלפון (10 ספרות)
+    if (!emailRegex.test(value) && !phoneRegex.test(value)) {
+      setErrors({
+        ...errors,
+        emailOrPhone: "Please enter a valid email or phone number",
+      });
+    } else {
+      setErrors({ ...errors, emailOrPhone: "" });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setErrors({ ...errors, confirmPassword: "Passwords do not match" });
+    if (errors.emailOrPhone || !formData.emailOrPhone) {
+      alert("Please enter a valid email or phone number.");
       return;
     }
     console.log("Form submitted:", formData);
+    alert("Form submitted successfully!");
+  };
+
+  const handleBack = () => {
+    navigate(-1); // חזרה לעמוד הקודם
   };
 
   return (
     <Box
       sx={{
-        minHeight: "100vh", // גובה מלא של העמוד
+        minHeight: "100vh",
         display: "flex",
-        justifyContent: "center", // ממרכז אופקית
-        alignItems: "center", // ממרכז אנכית
-        backgroundColor: "#f5f5f5", // צבע רקע
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f5f5",
       }}
     >
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{
+          position: "relative",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 4, // רווח בין האלמנטים
+          gap: 4,
           padding: 5,
           borderRadius: 2,
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // צל קל
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
           backgroundColor: "white",
-          width: "90%", // שימוש ברוחב יחסי
-          maxWidth: "400px", // רוחב מקסימלי
+          width: "90%",
+          maxWidth: "400px",
         }}
       >
+        {/* כפתור חזרה */}
+        <Button
+          onClick={handleBack}
+          startIcon={<ArrowBackIcon />}
+          sx={{
+            position: "absolute",
+            top: 10,
+            left: 10,
+            color: "#8d6e63",
+          }}
+        >
+          Back
+        </Button>
+
         <Typography
           variant="h4"
           sx={{
@@ -74,36 +98,17 @@ function FormSignUp() {
           Sign Up
         </Typography>
 
-        {/* שדות הטופס */}
-        {["email", "password"].map((field) => (
-          <TextField
-            key={field}
-            label={field.replace(/^\w/, (c) => c.toUpperCase())}
-            name={field}
-            type={field === "password" ? "password" : "text"}
-            value={formData[field]}
-            onChange={handleChange}
-            fullWidth
-            required
-            sx={{
-              "& .MuiInputBase-root": {
-                borderRadius: 2, // עיגול פינות
-              },
-            }}
-          />
-        ))}
-
-        {/* Confirm Password Field */}
+        {/* Email or Phone Field */}
         <TextField
-          label="Confirm Password"
-          name="confirmPassword"
-          type="password"
-          value={formData.confirmPassword}
+          label="Email or Phone Number"
+          name="emailOrPhone"
+          type="text"
+          value={formData.emailOrPhone}
           onChange={handleChange}
           fullWidth
           required
-          error={!!errors.confirmPassword}
-          helperText={errors.confirmPassword}
+          error={!!errors.emailOrPhone}
+          helperText={errors.emailOrPhone}
           sx={{
             "& .MuiInputBase-root": {
               borderRadius: 2,
@@ -115,8 +120,8 @@ function FormSignUp() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between", // ריווח בין הכפתורים
-            gap: 2, // ריווח אופקי בין הכפתורים
+            justifyContent: "space-between",
+            gap: 2,
             width: "100%",
           }}
         >

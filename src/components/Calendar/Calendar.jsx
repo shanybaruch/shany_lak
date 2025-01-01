@@ -11,9 +11,15 @@ import {
   Radio,
   RadioGroup,
   FormControl,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogActions,
 } from "@mui/material";
+import FormSignIn from "../Formsignin/Formsignin";
+import FormSignUp from "../Formsignup/Formsignup";
 
-const WEEK_DAYS = ["א", "ב", "ג", "ד", "ה", "ו", "ש"];
+const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const AVAILABLE_HOURS = ["09:00", "11:00", "13:00", "15:00", "17:00"];
 
 const generateCalendarDays = (year, month) => {
@@ -50,12 +56,11 @@ const Calendar = () => {
     lastName: "",
     phone: "",
   });
+  const [openDialog, setOpenDialog] = useState(false);
 
   const today = new Date();
 
   useEffect(() => {
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
@@ -90,7 +95,7 @@ const Calendar = () => {
       !clientDetails.lastName ||
       !clientDetails.phone
     ) {
-      alert("אנא מלא את כל השדות הדרושים.");
+      alert("Please fill in all required fields.");
       return;
     }
 
@@ -104,8 +109,10 @@ const Calendar = () => {
 
     console.log("Appointment saved:", appointmentDetails);
     alert(
-      `התור נקבע בהצלחה! פרטי הפגישה נשלחו למייל. \n חשוב לחדש כל 3 שבועות עד חודש לשמירה על בריאות הציפורניים. ${
-        additionalInfo.reminder ? "תזכורת תישלח שבועיים לפני החודש." : ""
+      `Appointment successfully scheduled! Details have been sent via email. \n Please renew every 3 weeks to a month for nail health. ${
+        additionalInfo.reminder
+          ? "A reminder will be sent two weeks before the month."
+          : ""
       }`
     );
     setSelectedDate(null);
@@ -185,8 +192,19 @@ const Calendar = () => {
         padding: 6,
         backgroundColor: "#f7ebe8",
         minHeight: "100vh",
+        animation: "fadeIn 1s ease-in-out",
       }}
     >
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
       <Typography
         variant="h4"
         sx={{
@@ -196,101 +214,71 @@ const Calendar = () => {
           marginBottom: 8,
         }}
       >
-        קביעת תור
+        Schedule Appointment
       </Typography>
       <FormControl component="fieldset" sx={{ marginBottom: 4 }}>
         <RadioGroup
           row
           value={clientType}
-          onChange={(e) => setClientType(e.target.value)}
+          onChange={(e) => {
+            setClientType(e.target.value);
+            setOpenDialog(true);
+          }}
         >
           <FormControlLabel
             value="new"
             control={<Radio />}
-            label="לקוחה חדשה"
+            label="New Client"
           />
           <FormControlLabel
             value="returning"
             control={<Radio />}
-            label="לקוחה חוזרת"
+            label="Returning Client"
           />
         </RadioGroup>
       </FormControl>
-      {clientType === "new" && (
-        <Box sx={{ marginBottom: 4, width: "20%" }}>
-          <TextField
-            fullWidth
-            label="שם פרטי"
-            value={clientDetails.firstName}
-            onChange={(e) =>
-              setClientDetails({ ...clientDetails, firstName: e.target.value })
-            }
-            sx={{ marginBottom: 2 }}
-          />
-          <TextField
-            fullWidth
-            label="שם משפחה"
-            value={clientDetails.lastName}
-            onChange={(e) =>
-              setClientDetails({ ...clientDetails, lastName: e.target.value })
-            }
-            sx={{ marginBottom: 2 }}
-          />
-          <TextField
-            fullWidth
-            label="מספר טלפון"
-            value={clientDetails.phone}
-            onChange={(e) =>
-              setClientDetails({ ...clientDetails, phone: e.target.value })
-            }
-          />
-          <Box sx={{ marginTop: 2, textAlign: "center" , display:"inline-flex",}}>
-            <Button
-              variant="outlined"
-              sx={{
-                marginRight: 2,
-                color: "#8d6e63",
-                borderColor: "#8d6e63",
-              }}
-            >
-              הרשם ושמור נתונים
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#8d6e63",
-                borderColor: "#8d6e63",
-              }}
-            >
-              קבע תור ללא הרשמה
-            </Button>
-          </Box>
-        </Box>
-      )}
-      {clientType === "returning" && (
-        <Button
-          variant="outlined"
-          sx={{
-            marginBottom: 4,
-            color: "#8d6e63",
-            borderColor: "#8d6e63",
-          }}
-        >
-          התחברות
-        </Button>
-      )}
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        fullWidth
+        maxWidth="sm"
+        sx={{
+          "& .MuiDialog-paper": {
+            borderRadius: "12px",
+            maxHeight: "90vh",
+          },
+        }}
+      >
+        <DialogTitle sx={{ textAlign: "center", fontWeight: "bold" }}>
+          {clientType === "new" ? " " : ""}
+        </DialogTitle>
+        <DialogContent sx={{ overflowY: "auto" }}>
+          {clientType === "new" ? <FormSignUp /> : <FormSignIn />}
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setOpenDialog(false)}
+            sx={{
+              color: "#8d6e63",
+              fontWeight: "bold",
+            }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} sm={6}>
           {renderCalendar(
             currentMonthDays,
-            today.toLocaleString("he-IL", { month: "long", year: "numeric" })
+            today.toLocaleString("en-US", { month: "long", year: "numeric" })
           )}
         </Grid>
         <Grid item xs={12} sm={6}>
           {renderCalendar(
             nextMonthDays,
             new Date(today.getFullYear(), today.getMonth() + 1).toLocaleString(
-              "he-IL",
+              "en-US",
               { month: "long", year: "numeric" }
             )
           )}
@@ -310,13 +298,13 @@ const Calendar = () => {
           }}
         >
           <Typography variant="h6" sx={{ color: "#8d6e63" }}>
-            : תאריך נבחר {selectedDate.toLocaleDateString("he-IL")}
+            Selected Date: {selectedDate.toLocaleDateString("en-US")}
           </Typography>
           <Typography
             variant="subtitle1"
             sx={{ marginTop: 2, color: "#8d6e63" }}
           >
-            : בחר שעה
+            Select Time:
           </Typography>
           <Grid container spacing={1}>
             {AVAILABLE_HOURS.map((hour) => (
@@ -341,12 +329,12 @@ const Calendar = () => {
             variant="subtitle1"
             sx={{ marginTop: 2, color: "#8d6e63" }}
           >
-           : הערות נוספות
+            Additional Notes:
           </Typography>
           <TextField
             fullWidth
             multiline
-            rows={2}
+            rows={1}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             sx={{ marginBottom: 2 }}
@@ -355,7 +343,7 @@ const Calendar = () => {
             variant="subtitle1"
             sx={{ color: "#8d6e63", marginBottom: 1 }}
           >
-           : פרטים נוספים
+            Additional Details:
           </Typography>
           <FormControlLabel
             control={
@@ -369,7 +357,7 @@ const Calendar = () => {
                 }
               />
             }
-            label="ציפורניים ארוכות"
+            label="Long Nails"
           />
           <FormControlLabel
             control={
@@ -383,22 +371,9 @@ const Calendar = () => {
                 }
               />
             }
-            label="השלמת ציפורן"
+            label="Nail Fix Needed"
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={additionalInfo.reminder}
-                onChange={(e) =>
-                  setAdditionalInfo({
-                    ...additionalInfo,
-                    reminder: e.target.checked,
-                  })
-                }
-              />
-            }
-            label="שלח לי תזכורת שבועיים לפני"
-          />
+          <br />
           <Button
             onClick={handleSaveAppointment}
             variant="contained"
@@ -411,7 +386,7 @@ const Calendar = () => {
               },
             }}
           >
-            שלח פגישה
+            Save Appointment
           </Button>
         </Box>
       )}
