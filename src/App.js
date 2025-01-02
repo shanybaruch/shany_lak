@@ -18,8 +18,6 @@ function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/signup" element={<FormSignUp />} />{" "}
-        {/* נתיב חדש ל-Sign Up */}
       </Routes>
     </Router>
   );

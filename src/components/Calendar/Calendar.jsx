@@ -256,22 +256,16 @@ const Calendar = () => {
         }}
       >
         <DialogTitle sx={{ textAlign: "center", fontWeight: "bold" }}>
-          {clientType === "new" ? "Sign Up" : "Sign In"}
+          {clientType === "new" ? "New Client Registration" : "  "}
         </DialogTitle>
         <DialogContent sx={{ overflowY: "auto" }}>
-          {clientType === "new" ? <FormSignUp /> : <FormSignIn />}
+          {clientType === "new" ? (
+            <FormSignUp open={openDialog} onClose={() => setOpenDialog(false)} />
+          ) : (
+            <FormSignIn onClose={() => setOpenDialog(false)} />
+          )}
         </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => setOpenDialog(false)}
-            sx={{
-              color: "#8d6e63",
-              fontWeight: "bold",
-            }}
-          >
-            Close
-          </Button>
-        </DialogActions>
+       
       </Dialog>
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} sm={6}>

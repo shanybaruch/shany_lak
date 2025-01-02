@@ -14,12 +14,6 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation(); // מזהה את הנתיב הנוכחי
 
-  // פונקציה לפתיחת קישורים בטאב חדש
-  const handleOpenNewTab = (url) => {
-    const fullUrl = `${window.location.origin}${url}`;
-    window.open(fullUrl, "_blank"); // פותח את הקישור בטאב חדש
-  };
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -57,7 +51,8 @@ function Navbar() {
           {navItems.map((item) => (
             <Button
               key={item.path}
-              onClick={() => handleOpenNewTab(item.path)} // שימוש ב-window.open
+              component={Link} // שימוש בקישור React
+              to={item.path}
               sx={{
                 paddingX: 3,
                 paddingY: 2,

@@ -4,156 +4,214 @@ import {
   Button,
   Box,
   Typography,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
 
-function FormSignUp() {
+function FormSignUp({ open, onClose }) {
   const [formData, setFormData] = useState({
-    emailOrPhone: "",
+    email: "",
+    phone: "",
+    verificationMethod: "email", // email or phone
+    verificationCode: "",
   });
   const [errors, setErrors] = useState({
-    emailOrPhone: "",
+    email: "",
+    phone: "",
   });
-  const navigate = useNavigate();
+  const [isCodeSent, setIsCodeSent] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // בדיקת אימייל
-    const phoneRegex = /^\d{10}$/; // בדיקת מספר טלפון (10 ספרות)
-    if (!emailRegex.test(value) && !phoneRegex.test(value)) {
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       setErrors({
         ...errors,
-        emailOrPhone: "Please enter a valid email or phone number",
+        email: emailRegex.test(value) ? "" : "Please enter a valid email",
       });
-    } else {
-      setErrors({ ...errors, emailOrPhone: "" });
+    }
+
+    if (name === "phone") {
+      const phoneRegex = /^\d{10}$/;
+      setErrors({
+        ...errors,
+        phone: phoneRegex.test(value) ? "" : "Please enter a valid 10-digit phone number",
+      });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (errors.emailOrPhone || !formData.emailOrPhone) {
-      alert("Please enter a valid email or phone number.");
+
+    if (errors.email || errors.phone || !formData.email || !formData.phone) {
+      alert("Please fill in valid email and phone number.");
       return;
     }
-    console.log("Form submitted:", formData);
-    alert("Form submitted successfully!");
+
+    console.log(`Code sent to ${formData.verificationMethod}:`, formData[formData.verificationMethod]);
+    alert(`Verification code sent to your ${formData.verificationMethod}.`);
+    setIsCodeSent(true);
   };
 
-  const handleBack = () => {
-    navigate(-1); // חזרה לעמוד הקודם
+  const handleVerify = (e) => {
+    e.preventDefault();
+
+    if (!formData.verificationCode) {
+      alert("Please enter the verification code.");
+      return;
+    }
+
+    console.log("Verification successful with code:", formData.verificationCode);
+    alert("Verification successful!");
+    onClose(); // Close the dialog after successful verification
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f5f5f5",
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="sm"
+      fullWidth
+      BackdropProps={{
+        sx: { backgroundColor: "rgba(255, 255, 255, 0.5)" }, // רקע בהיר
+      }}
+      PaperProps={{
+        sx: { borderRadius: 2 },
       }}
     >
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 4,
-          padding: 5,
-          borderRadius: 2,
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-          backgroundColor: "white",
-          width: "90%",
-          maxWidth: "400px",
-        }}
-      >
-        {/* כפתור חזרה */}
-        <Button
-          onClick={handleBack}
-          startIcon={<ArrowBackIcon />}
+      <DialogTitle sx={{ textAlign: "center", fontWeight: "bold", fontSize: "25px" }}>
+        <IconButton
+          onClick={onClose}
           sx={{
             position: "absolute",
-            top: 10,
             left: 10,
+            top: 10,
             color: "#8d6e63",
           }}
         >
-          Back
-        </Button>
-
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        >
-          Sign Up
-        </Typography>
-
-        {/* Email or Phone Field */}
-        <TextField
-          label="Email or Phone Number"
-          name="emailOrPhone"
-          type="text"
-          value={formData.emailOrPhone}
-          onChange={handleChange}
-          fullWidth
-          required
-          error={!!errors.emailOrPhone}
-          helperText={errors.emailOrPhone}
-          sx={{
-            "& .MuiInputBase-root": {
-              borderRadius: 2,
-            },
-          }}
-        />
-
-        {/* כפתורים */}
+          <ArrowBackIcon />
+        </IconButton>
+        Sign Up
+      </DialogTitle>
+      <DialogContent>
         <Box
+          component="form"
+          onSubmit={isCodeSent ? handleVerify : handleSubmit}
           sx={{
             display: "flex",
-            justifyContent: "space-between",
-            gap: 2,
-            width: "100%",
+            flexDirection: "column",
+            gap: 1,
+            alignItems: "center", // למרכז את האלמנטים
+            padding: 0,
           }}
         >
-          <Button
-            variant="outlined"
-            onClick={() => console.log("Cancelled")}
-            fullWidth
-            sx={{
-              paddingY: 1.5,
-              fontSize: "16px",
-              borderRadius: 2,
-            }}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{
-              paddingY: 1.5,
-              fontSize: "16px",
-              borderRadius: 2,
-              backgroundColor: "#8d6e63",
-            }}
-          >
-            Submit
-          </Button>
+          {!isCodeSent ? (
+            <>
+              <TextField
+                label="Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                fullWidth
+                required
+                error={!!errors.email}
+                helperText={errors.email}
+                sx={{
+                  maxWidth: "360px", // הגבלת רוחב
+                }}
+              />
+
+              <TextField
+                label="Phone Number"
+                name="phone"
+                type="text"
+                value={formData.phone}
+                onChange={handleChange}
+                fullWidth
+                required
+                error={!!errors.phone}
+                helperText={errors.phone}
+                sx={{
+                  maxWidth: "360px", // הגבלת רוחב
+                }}
+              />
+
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                Choose Verification Method:
+              </Typography>
+              <RadioGroup
+                row
+                name="verificationMethod"
+                value={formData.verificationMethod}
+                onChange={(e) =>
+                  setFormData({ ...formData, verificationMethod: e.target.value })
+                }
+                sx={{
+                  justifyContent: "center", // מרכוז הבחירה
+                }}
+              >
+                <FormControlLabel
+                  value="email"
+                  control={<Radio />}
+                  label="Email"
+                />
+                <FormControlLabel
+                  value="phone"
+                  control={<Radio />}
+                  label="Phone"
+                />
+              </RadioGroup>
+            </>
+          ) : (
+            <TextField
+              label="Verification Code"
+              name="verificationCode"
+              type="text"
+              value={formData.verificationCode}
+              onChange={(e) =>
+                setFormData({ ...formData, verificationCode: e.target.value })
+              }
+              fullWidth
+              required
+              error={!formData.verificationCode}
+              helperText={
+                !formData.verificationCode
+                  ? "Please enter the verification code"
+                  : ""
+              }
+              sx={{
+                maxWidth: "300px", // הגבלת רוחב
+              }}
+            />
+          )}
         </Box>
-      </Box>
-    </Box>
+      </DialogContent>
+      <DialogActions
+        sx={{
+          marginTop: "-10px",
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          type="submit"
+          onClick={isCodeSent ? handleVerify : handleSubmit}
+          variant="contained"
+          sx={{ backgroundColor: "#8d6e63", color: "white", padding: "10px", width: "100px" }}
+        >
+          {isCodeSent ? "Verify" : "Submit"}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

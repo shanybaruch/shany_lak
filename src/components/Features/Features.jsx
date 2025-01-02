@@ -95,7 +95,7 @@ function Features() {
             backgroundColor: "#efebe9",
             padding: "60px",
             borderRadius: "20px",
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+            boxShadow: "0 4px 10px rgba(255, 255, 255, 0.3)",
             width: "100%",
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(50px)",
