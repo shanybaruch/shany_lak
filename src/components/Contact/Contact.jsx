@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, Container, Grid } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -20,136 +20,160 @@ function Contact() {
     <div id="Contact">
       <Box
         sx={{
-          backgroundColor: "#fdf8f4",
+          backgroundImage: `url('/lakbattleback.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           minHeight: "100vh",
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
-          padding: 4,
+          justifyContent: "center",
+          position: "relative",
+          textAlign: "center",
         }}
       >
-        {/* צד שמאל - שם העסק */}
+        {/* שכבת רקע שקופה */}
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            marginLeft: 8,
-            gap: 1, // ריווח קטן יותר בין האלמנטים
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            zIndex: 1,
           }}
-        >
-          <Typography
-            variant="h3"
-            sx={{
-              fontFamily: "serif",
-              fontWeight: "bold",
-              color: "#6d4c41",
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(-20px)",
-              transition: "all 0.6s ease-in-out",
-              marginLeft: 20,
-            }}
-          >
-            SHANY BARUCH
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontFamily: "sans-serif",
-              color: "#6d4c41",
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(-20px)",
-              transition: "all 0.8s ease-in-out",
-              marginLeft: 35,
-            
-            }}
-          >
-            NAILS STUDIO
-          </Typography>
-        </Box>
+        />
 
-        {/* צד ימין - פרטי יצירת קשר */}
-        <Box
+        {/* תוכן מעל הרקע השקוף */}
+        <Container
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            marginRight: 50,
-            gap: 2, // ריווח קטן יותר בין השורות
+            position: "relative",
+            zIndex: 2,
+            backgroundColor: "#efebe9",
+            padding: "150px",
+            borderRadius: "10px",
+            boxShadow: "0 2px 5px rgba(255, 255, 255, 0.3)",
+            width: "80%",
+            maxWidth: "800px",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(50px)",
+            transition: "all 0.8s ease-in-out",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease-in-out",
-            }}
-          >
-            <IconButton>
-              <PhoneIcon sx={{ color: "#6d4c41" , fontSize:"20px"}} />
-            </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41", fontSize:"20px"}}>
-              055-662-5797
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease-in-out 0.2s",
-            }}
-          >
-            <IconButton>
-              <MailOutlineIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
-            </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px" }}>
-              baruchshany@gmail.com
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease-in-out 0.4s",
-            }}
-          >
-            <IconButton>
-              <LocationOnIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
-            </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px" }}>
-              Weizman, Givatayim
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 4,
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease-in-out 0.6s",
-            }}
-          >
-            <IconButton>
-              <InstagramIcon sx={{ color: "#6d4c41" , fontSize:"20px" }} />
-            </IconButton>
-            <Typography variant="body1" sx={{ color: "#6d4c41" , fontSize:"20px"}}>
-              shanyb.nails
-            </Typography>
-          </Box>
-        </Box>
+          <Grid container spacing={4} alignItems="center">
+            {/* כותרות בצד אחד */}
+            <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontFamily: "serif",
+                  fontWeight: "bold",
+                  color: "#6d4c41",
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(-20px)",
+                  transition: "all 0.6s ease-in-out",
+                }}
+              >
+                SHANY BARUCH
+              </Typography>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontFamily: "sans-serif",
+                  color: "#6d4c41",
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(-20px)",
+                  transition: "all 0.8s ease-in-out",
+                }}
+              >
+                NAILS STUDIO
+              </Typography>
+            </Grid>
+
+            {/* פרטי יצירת קשר בצד השני */}
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: 2,
+                  paddingLeft:"80px"
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                    transition: "all 0.6s ease-in-out",
+                  }}
+                >
+                  <IconButton>
+                    <PhoneIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                  </IconButton>
+                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                    055-662-5797
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                    transition: "all 0.6s ease-in-out 0.2s",
+                  }}
+                >
+                  <IconButton>
+                    <MailOutlineIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                  </IconButton>
+                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                    baruchshany@gmail.com
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                    transition: "all 0.6s ease-in-out 0.4s",
+                  }}
+                >
+                  <IconButton>
+                    <LocationOnIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                  </IconButton>
+                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                    Weizman, Givatayim
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                    transition: "all 0.6s ease-in-out 0.6s",
+                  }}
+                >
+                  <IconButton>
+                    <InstagramIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                  </IconButton>
+                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                    shanyb.nails
+                  </Typography>
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
       </Box>
     </div>
   );
