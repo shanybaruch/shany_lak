@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
-import Features from "./components/Features/Features";
+import Services from "./components/Services/Services";
 import Calendar from "./components/Calendar/Calendar";
-import FormSignUp from "./components/Formsignup/Formsignup";
 import ScrollToTop from "./components/Scrolltotop/Scrolltotop.jsx";
+import PriceList from "./components/PriceList/PriceList.jsx";
 
 function App() {
   return (
@@ -15,9 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/features" element={<Features />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/pricelist" element={<PriceList />} />
       </Routes>
     </Router>
   );

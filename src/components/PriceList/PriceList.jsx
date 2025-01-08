@@ -5,7 +5,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-function Contact() {
+function PriceList() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Contact() {
   }, []);
 
   return (
-    <div id="Contact">
+    <div id="PriceList">
       <Box
         sx={{
           backgroundImage: `url('/lakbattleback.png')`,
@@ -32,7 +32,6 @@ function Contact() {
           textAlign: "center",
         }}
       >
-        {/* שכבת רקע שקופה */}
         <Box
           sx={{
             position: "absolute",
@@ -44,8 +43,6 @@ function Contact() {
             zIndex: 1,
           }}
         />
-
-        {/* תוכן מעל הרקע השקוף */}
         <Container
           sx={{
             position: "relative",
@@ -62,14 +59,12 @@ function Contact() {
           }}
         >
           <Grid container spacing={4} alignItems="center">
-            {/* כותרות בצד אחד */}
             <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
               <Typography
                 variant="h3"
                 sx={{
                   fontFamily: "serif",
-                  fontWeight: "",
-                  padding:"20px",
+                  padding: "20px",
                   color: "#6d4c41",
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateY(0)" : "translateY(-20px)",
@@ -91,8 +86,6 @@ function Contact() {
                 NAIL STUDIO
               </Typography>
             </Grid>
-
-            {/* פרטי יצירת קשר בצד השני */}
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
@@ -100,7 +93,7 @@ function Contact() {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   gap: 1,
-                  paddingLeft:"80px"
+                  paddingLeft: "80px",
                 }}
               >
                 <Box
@@ -116,7 +109,10 @@ function Contact() {
                   <IconButton>
                     <PhoneIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
                   </IconButton>
-                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px",  }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#6d4c41", fontSize: "20px" }}
+                  >
                     055-662-5797
                   </Typography>
                 </Box>
@@ -131,9 +127,14 @@ function Contact() {
                   }}
                 >
                   <IconButton>
-                    <MailOutlineIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                    <MailOutlineIcon
+                      sx={{ color: "#6d4c41", fontSize: "20px" }}
+                    />
                   </IconButton>
-                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#6d4c41", fontSize: "20px" }}
+                  >
                     baruchshany@gmail.com
                   </Typography>
                 </Box>
@@ -148,9 +149,14 @@ function Contact() {
                   }}
                 >
                   <IconButton>
-                    <LocationOnIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                    <LocationOnIcon
+                      sx={{ color: "#6d4c41", fontSize: "20px" }}
+                    />
                   </IconButton>
-                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#6d4c41", fontSize: "20px" }}
+                  >
                     Weizman, Givatayim
                   </Typography>
                 </Box>
@@ -165,9 +171,14 @@ function Contact() {
                   }}
                 >
                   <IconButton>
-                    <InstagramIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
+                    <InstagramIcon
+                      sx={{ color: "#6d4c41", fontSize: "20px" }}
+                    />
                   </IconButton>
-                  <Typography variant="body1" sx={{ color: "#6d4c41", fontSize: "20px" }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#6d4c41", fontSize: "20px" }}
+                  >
                     shanyb.nails
                   </Typography>
                 </Box>
@@ -180,4 +191,5 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default PriceList;
+``

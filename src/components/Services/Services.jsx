@@ -6,17 +6,16 @@ import {
   Grid,
   Card,
   CardContent,
-  Button,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom"; // ניווט בין עמודים
+import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import CatalogIcon from "@mui/icons-material/MenuBook";
 import PriceCheckIcon from "@mui/icons-material/AttachMoney";
 import EventIcon from "@mui/icons-material/Event";
 
-function Features() {
+function Services() {
   const [isVisible, setIsVisible] = useState(false);
-  const navigate = useNavigate(); // הוק לניווט
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,7 +25,7 @@ function Features() {
     return () => clearTimeout(timer);
   }, []);
 
-  const features = [
+  const services = [
     {
       title: "Colors",
       icon: <PersonIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
@@ -41,27 +40,18 @@ function Features() {
       title: "Price list",
       icon: <PriceCheckIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
       description: "View our prices",
+      onClick: () => navigate("/pricelist"),
     },
     {
       title: "Making an appointment",
       icon: <EventIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
-      description: (
-        <>
-          Schedule your next appointment{" "}
-          <Button
-            variant="contained"
-            sx={{ marginTop: 2, backgroundColor: "#8d6e63", color: "#fff" }}
-            onClick={() => navigate("/calendar")} // ניווט לעמוד הקלנדר
-          >
-            Open Calendar
-          </Button>
-        </>
-      ),
+      description: "Schedule your next appointment",
+      onClick: () => navigate("/calendar"),
     },
   ];
 
   return (
-    <div id="Features">
+    <div id="Services">
       <Box
         sx={{
           backgroundImage: `url('/lakbattleback.png')`,
@@ -103,7 +93,7 @@ function Features() {
           }}
         >
           <Grid container spacing={6}>
-            {features.map((feature, index) => (
+            {services.map((service, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box
                   sx={{
@@ -123,7 +113,9 @@ function Features() {
                         transform: "scale(1.05)",
                       },
                       backgroundColor: "#ffffff",
+                      cursor: service.onClick ? "pointer" : "default",
                     }}
+                    onClick={service.onClick || undefined}
                   >
                     <Box
                       sx={{
@@ -133,7 +125,7 @@ function Features() {
                         padding: 3,
                       }}
                     >
-                      {feature.icon}
+                      {service.icon}
                     </Box>
                     <CardContent>
                       <Typography
@@ -142,14 +134,14 @@ function Features() {
                         sx={{ fontWeight: "bold", mb: 3 }}
                         textAlign={"center"}
                       >
-                        {feature.title}
+                        {service.title}
                       </Typography>
                       <Typography
                         variant="body2"
                         color="text.secondary"
                         textAlign={"center"}
                       >
-                        {feature.description}
+                        {service.description}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -163,4 +155,4 @@ function Features() {
   );
 }
 
-export default Features;
+export default Services;
