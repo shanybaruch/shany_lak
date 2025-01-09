@@ -14,22 +14,29 @@ import {
   IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import userAPI from "../../API/api"; // Adjust the path to your API file
 
 function FormSignUp({ open, onClose }) {
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     verificationMethod: "email", // email or phone
     verificationCode: "",
   });
+
   const [errors, setErrors] = useState({
     email: "",
     phone: "",
   });
+
   const [isCodeSent, setIsCodeSent] = useState(false);
+  const [verificationPopup, setVerificationPopup] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
     setFormData({ ...formData, [name]: value });
 
     if (name === "email") {
@@ -49,20 +56,37 @@ function FormSignUp({ open, onClose }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (errors.email || errors.phone || !formData.email || !formData.phone) {
-      alert("Please fill in valid email and phone number.");
+    if (
+      errors.email ||
+      errors.phone ||
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.phone
+    ) {
+      alert("Please fill in all required fields correctly.");
       return;
     }
 
-    console.log(`Code sent to ${formData.verificationMethod}:`, formData[formData.verificationMethod]);
-    alert(`Verification code sent to your ${formData.verificationMethod}.`);
-    setIsCodeSent(true);
+    try {
+      // Send register request to the API
+      const response = await userAPI.register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+      });
+      alert(response.message);
+      setVerificationPopup(true); // Open verification popup
+    } catch (error) {
+      alert(error.error || "Failed to send verification code.");
+    }
   };
 
-  const handleVerify = (e) => {
+  const handleVerify = async (e) => {
     e.preventDefault();
 
     if (!formData.verificationCode) {
@@ -70,9 +94,21 @@ function FormSignUp({ open, onClose }) {
       return;
     }
 
-    console.log("Verification successful with code:", formData.verificationCode);
-    alert("Verification successful!");
-    onClose(); // Close the dialog after successful verification
+    try {
+      // Send verify request to the API
+      const response = await userAPI.verifyCode({
+        email: formData.email,
+        code: formData.verificationCode,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+      });
+      alert("User successfully registered!");
+      setVerificationPopup(false); // Close the verification popup
+      onClose(); // Close the main dialog
+    } catch (error) {
+      alert(error.error || "Verification failed. Please try again.");
+    }
   };
 
   return (
@@ -82,7 +118,7 @@ function FormSignUp({ open, onClose }) {
       maxWidth="sm"
       fullWidth
       BackdropProps={{
-        sx: { backgroundColor: "rgba(255, 255, 255, 0.5)" }, // רקע בהיר
+        sx: { backgroundColor: "rgba(255, 255, 255, 0.5)" }, // Light background
       }}
       PaperProps={{
         sx: { borderRadius: 2 },
@@ -110,12 +146,38 @@ function FormSignUp({ open, onClose }) {
             display: "flex",
             flexDirection: "column",
             gap: 1,
-            alignItems: "center", // למרכז את האלמנטים
+            alignItems: "center",
             padding: 0,
           }}
         >
-          {!isCodeSent ? (
+          {!verificationPopup ? (
             <>
+              <TextField
+                label="First Name"
+                name="firstName"
+                type="text"
+                value={formData.firstName}
+                onChange={handleChange}
+                fullWidth
+                required
+                sx={{
+                  maxWidth: "360px",
+                }}
+              />
+
+              <TextField
+                label="Last Name"
+                name="lastName"
+                type="text"
+                value={formData.lastName}
+                onChange={handleChange}
+                fullWidth
+                required
+                sx={{
+                  maxWidth: "360px",
+                }}
+              />
+
               <TextField
                 label="Email"
                 name="email"
@@ -127,7 +189,7 @@ function FormSignUp({ open, onClose }) {
                 error={!!errors.email}
                 helperText={errors.email}
                 sx={{
-                  maxWidth: "360px", // הגבלת רוחב
+                  maxWidth: "360px",
                 }}
               />
 
@@ -142,7 +204,7 @@ function FormSignUp({ open, onClose }) {
                 error={!!errors.phone}
                 helperText={errors.phone}
                 sx={{
-                  maxWidth: "360px", // הגבלת רוחב
+                  maxWidth: "360px",
                 }}
               />
 
@@ -157,7 +219,7 @@ function FormSignUp({ open, onClose }) {
                   setFormData({ ...formData, verificationMethod: e.target.value })
                 }
                 sx={{
-                  justifyContent: "center", // מרכוז הבחירה
+                  justifyContent: "center",
                 }}
               >
                 <FormControlLabel
@@ -190,7 +252,7 @@ function FormSignUp({ open, onClose }) {
                   : ""
               }
               sx={{
-                maxWidth: "300px", // הגבלת רוחב
+                maxWidth: "300px",
               }}
             />
           )}
@@ -204,11 +266,16 @@ function FormSignUp({ open, onClose }) {
       >
         <Button
           type="submit"
-          onClick={isCodeSent ? handleVerify : handleSubmit}
+          onClick={verificationPopup ? handleVerify : handleSubmit}
           variant="contained"
-          sx={{ backgroundColor: "#8d6e63", color: "white", padding: "10px", width: "100px" }}
+          sx={{
+            backgroundColor: "#8d6e63",
+            color: "white",
+            padding: "10px",
+            width: "100px",
+          }}
         >
-          {isCodeSent ? "Verify" : "Submit"}
+          {verificationPopup ? "Verify" : "Submit"}
         </Button>
       </DialogActions>
     </Dialog>

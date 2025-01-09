@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, IconButton, Container, Grid } from "@mui/material";
-import PhoneIcon from "@mui/icons-material/Phone";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { Box, Typography, Container, Grid, Button } from "@mui/material";
 
 function PriceList() {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,7 +35,7 @@ function PriceList() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            backgroundColor: "rgba(255, 255, 255, 0.85)",
             zIndex: 1,
           }}
         />
@@ -47,144 +43,130 @@ function PriceList() {
           sx={{
             position: "relative",
             zIndex: 2,
-            backgroundColor: "#efebe9",
-            padding: "150px",
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            padding: "30px",
             borderRadius: "10px",
-            boxShadow: "0 2px 5px rgba(255, 255, 255, 0.3)",
-            width: "80%",
-            maxWidth: "800px",
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(50px)",
-            transition: "all 0.8s ease-in-out",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            maxWidth: "500px",
+            textAlign: "center",
           }}
         >
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6} sx={{ textAlign: "center" }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  fontFamily: "serif",
-                  padding: "20px",
-                  color: "#6d4c41",
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateY(0)" : "translateY(-20px)",
-                  transition: "all 0.6s ease-in-out",
-                }}
-              >
-                SHANY BARUCH
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "sans-serif",
-                  color: "#6d4c41",
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateY(0)" : "translateY(-20px)",
-                  transition: "all 0.8s ease-in-out",
-                }}
-              >
-                NAIL STUDIO
-              </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: "serif",
+              color: "#6d4c41",
+              marginBottom: "10px",
+            }}
+          >
+            PRICE
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontFamily: "sans-serif",
+              fontSize: "18px",
+              color: "#6d4c41",
+              marginBottom: "30px",
+              textTransform: "uppercase",
+              letterSpacing: "2px",
+            }}
+          >
+            List
+          </Typography>
+
+          {/* Nail Services */}
+          <Box
+            sx={{
+              marginBottom: "20px",
+              borderBottom: "1px solid #6d4c41",
+              paddingBottom: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+                color: "#6d4c41",
+                marginBottom: "10px",
+                textTransform: "uppercase",
+              }}
+            >
+              Nail Services
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={6} sx={{ textAlign: "left" }}>
+                <Typography variant="body1">Basic Manicure</Typography>
+                <Typography variant="body1">Gel Polish Manicure</Typography>
+                <Typography variant="body1">Basic Pedicure</Typography>
+                <Typography variant="body1">Pedicure + Gel Manicure</Typography>
+                <Typography variant="body1">Nail Repair</Typography>
+              </Grid>
+              <Grid item xs={6} sx={{ textAlign: "right" }}>
+                <Typography variant="body1">$20</Typography>
+                <Typography variant="body1">$25</Typography>
+                <Typography variant="body1">$15</Typography>
+                <Typography variant="body1">$30</Typography>
+                <Typography variant="body1">$10</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  gap: 1,
-                  paddingLeft: "80px",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    transition: "all 0.6s ease-in-out",
-                  }}
-                >
-                  <IconButton>
-                    <PhoneIcon sx={{ color: "#6d4c41", fontSize: "20px" }} />
-                  </IconButton>
-                  <Typography
-                    variant="body1"
-                    sx={{ color: "#6d4c41", fontSize: "20px" }}
-                  >
-                    055-662-5797
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    transition: "all 0.6s ease-in-out 0.2s",
-                  }}
-                >
-                  <IconButton>
-                    <MailOutlineIcon
-                      sx={{ color: "#6d4c41", fontSize: "20px" }}
-                    />
-                  </IconButton>
-                  <Typography
-                    variant="body1"
-                    sx={{ color: "#6d4c41", fontSize: "20px" }}
-                  >
-                    baruchshany@gmail.com
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    transition: "all 0.6s ease-in-out 0.4s",
-                  }}
-                >
-                  <IconButton>
-                    <LocationOnIcon
-                      sx={{ color: "#6d4c41", fontSize: "20px" }}
-                    />
-                  </IconButton>
-                  <Typography
-                    variant="body1"
-                    sx={{ color: "#6d4c41", fontSize: "20px" }}
-                  >
-                    Weizman, Givatayim
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    transition: "all 0.6s ease-in-out 0.6s",
-                  }}
-                >
-                  <IconButton>
-                    <InstagramIcon
-                      sx={{ color: "#6d4c41", fontSize: "20px" }}
-                    />
-                  </IconButton>
-                  <Typography
-                    variant="body1"
-                    sx={{ color: "#6d4c41", fontSize: "20px" }}
-                  >
-                    shanyb.nails
-                  </Typography>
-                </Box>
-              </Box>
+          </Box>
+
+          {/* Eyelash Extensions */}
+          <Box
+            sx={{
+              marginBottom: "20px",
+              borderBottom: "1px solid #6d4c41",
+              paddingBottom: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+                color: "#6d4c41",
+                marginBottom: "10px",
+                textTransform: "uppercase",
+              }}
+            >
+              Eyelash Extensions
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={6} sx={{ textAlign: "left" }}>
+                <Typography variant="body1">Temporary Extensions</Typography>
+                <Typography variant="body1">Eyelash Refill</Typography>
+                <Typography variant="body1">Eyelash Lift</Typography>
+                <Typography variant="body1">Eyelash Treatment</Typography>
+                <Typography variant="body1">Volume</Typography>
+              </Grid>
+              <Grid item xs={6} sx={{ textAlign: "right" }}>
+                <Typography variant="body1">$30</Typography>
+                <Typography variant="body1">$25</Typography>
+                <Typography variant="body1">$15</Typography>
+                <Typography variant="body1">$30</Typography>
+                <Typography variant="body1">$25</Typography>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
+
+          {/* Book Now Button */}
+          <Button
+            variant="contained"
+            sx={{
+              marginTop: "20px",
+              backgroundColor: "#6d4c41",
+              color: "#fff",
+              fontWeight: "bold",
+              padding: "10px 20px",
+              "&:hover": {
+                backgroundColor: "#5a392f",
+              },
+            }}
+          >
+            Book Now
+          </Button>
         </Container>
       </Box>
     </div>
@@ -192,4 +174,3 @@ function PriceList() {
 }
 
 export default PriceList;
-``
