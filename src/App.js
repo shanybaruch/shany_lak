@@ -7,6 +7,7 @@ import Services from "./components/Services/Services";
 import Calendar from "./components/Calendar/Calendar";
 import ScrollToTop from "./components/Scrolltotop/Scrolltotop.jsx";
 import PriceList from "./components/PriceList/PriceList.jsx";
+import Catalog from "./components/Catalog/Catalog.jsx";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/pricelist" element={<PriceList />} />
+        <Route path="/catalog" element={<Catalog />} />
+
       </Routes>
     </Router>
   );

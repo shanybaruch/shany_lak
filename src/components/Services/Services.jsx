@@ -35,6 +35,8 @@ function Services() {
       title: "Catalog",
       icon: <CatalogIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
       description: "Browse our catalog of works",
+      onClick: () => navigate("/catalog"),
+
     },
     {
       title: "Price list",
