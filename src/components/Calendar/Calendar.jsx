@@ -88,7 +88,8 @@ const Calendar = () => {
         margin: "20px auto",
         backgroundColor: "#ffffff",
         borderRadius: "12px",
-        maxWidth: "600px",
+        maxWidth: "620px",
+        maxHeight:"600px",
       }}
     >
       <Typography
@@ -96,7 +97,7 @@ const Calendar = () => {
         sx={{
           textAlign: "center",
           fontWeight: "bold",
-          marginBottom: 3,
+          marginBottom: 4,
           color: "#8d6e63",
         }}
       >
@@ -157,7 +158,7 @@ const Calendar = () => {
   return (
     <Box
       sx={{
-        padding: 6,
+        padding: 8,
         backgroundImage: `url('/alim.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -175,7 +176,7 @@ const Calendar = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          backgroundColor: "rgba(255, 255, 255, 0.75)",
           zIndex: 0, // הרקע נשאר בשכבה התחתונה
         }}
       />
@@ -188,12 +189,12 @@ const Calendar = () => {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             fontWeight: "bold",
             color: "#8d6e63",
             textAlign: "center",
-            marginBottom: 4,
+            marginBottom: 7,
           }}
         >
           Schedule Appointment
@@ -212,9 +213,8 @@ const Calendar = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: 10,
+            marginTop: 7,
             width: "100%",
-            maxWidth: "600px",
           }}
         >
           <IconButton
