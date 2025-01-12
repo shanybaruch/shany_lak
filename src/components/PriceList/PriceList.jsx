@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Container, Grid, Button } from "@mui/material";
+import { Box, Typography, Container, Grid } from "@mui/material";
 
 function PriceList() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,7 +16,7 @@ function PriceList() {
     <div id="PriceList">
       <Box
         sx={{
-          backgroundImage: `url('/lakbattleback.png')`,
+          backgroundImage: `url('/alim.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh",
@@ -35,7 +35,7 @@ function PriceList() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(255, 255, 255, 0.85)",
+            backgroundColor: "rgba(255, 255, 255, 0.6)",
             zIndex: 1,
           }}
         />
@@ -43,130 +43,152 @@ function PriceList() {
           sx={{
             position: "relative",
             zIndex: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.95)",
             padding: "30px",
             borderRadius: "10px",
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
             maxWidth: "500px",
             textAlign: "center",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(50px)",
+            transition: "all 1s ease-in-out",
           }}
         >
           <Typography
-            variant="h3"
+            variant="h1"
             sx={{
-              fontFamily: "serif",
+              fontFamily:"fantasy",
               color: "#6d4c41",
-              marginBottom: "10px",
+              marginBottom: "20px",
             }}
           >
-            PRICE
+            Price List
           </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "sans-serif",
+              color: "#6d4c41",
+              marginBottom: "20px",
+              fontWeight: "bold",
+            }}
+          >
+            מניקור לק ג'ל מבנה אנטומי  120₪ 
+          </Typography>
+
+          <Grid container spacing={2} sx={{ marginBottom: "30px" }}>
+            <Grid item xs={12}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "sans-serif",
+                  color: "#6d4c41",
+                  marginBottom: "10px",
+                  fontSize: "18px",
+                }}
+              >
+              20₪  מילוי וחיזוק ציפורניים חלשות עם גל בנייה 
+              </Typography>
+          
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "sans-serif",
+                  color: "#6d4c41",
+                  marginBottom: "10px",
+                  fontSize: "18px",
+                }}
+              >
+                השלמת ציפורן שבורה  10₪ 
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "sans-serif",
+                  color: "#6d4c41",
+                  marginBottom: "10px",
+                  fontSize: "18px",
+                }}
+              >
+                פרנץ'  10₪  
+              </Typography>
+            </Grid>
+          </Grid>
+
+          {/* Instructions */}
+          <Box>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "sans-serif",
+                color: "#6d4c41",
+                fontSize: "16px",
+                textAlign: "center",
+                marginBottom: "10px",
+              }}
+            >
+               אין להגיע עם מלווים ללא עדכון מראש• 
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "sans-serif",
+                color: "#6d4c41",
+                fontSize: "16px",
+                textAlign: "center",
+                marginBottom: "10px",
+              }}
+            >
+              את התור ניתן לבטל עד 24 שעות לפני המועד, אחרת יחויב במחצית מהסכום 
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "sans-serif",
+                color: "#6d4c41",
+                fontSize: "16px",
+                textAlign: "center",
+                marginBottom: "10px",
+              }}
+            >
+               איחור של 15 דקות יגרום לביטול תור•
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "sans-serif",
+                color: "#6d4c41",
+                fontSize: "16px",
+                textAlign: "center",
+                marginBottom: "10px",
+              }}
+            >
+               לאחר טיפול ניתנת אחריות לשבוע לתיקון. לאחר מכן, תיקון יתבצע בתשלום•
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "sans-serif",
+                color: "#6d4c41",
+                fontSize: "16px",
+                textAlign: "center",
+                marginBottom: "10px",
+              }}
+            >
+              bit / paybox / ניתן לשלם במזומן•
+            </Typography>
+          </Box>
+
+          {/* Instagram */}
           <Typography
             variant="body1"
             sx={{
               fontFamily: "sans-serif",
-              fontSize: "18px",
               color: "#6d4c41",
-              marginBottom: "30px",
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-            }}
-          >
-            List
-          </Typography>
-
-          {/* Nail Services */}
-          <Box
-            sx={{
-              marginBottom: "20px",
-              borderBottom: "1px solid #6d4c41",
-              paddingBottom: "10px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
-                color: "#6d4c41",
-                marginBottom: "10px",
-                textTransform: "uppercase",
-              }}
-            >
-              Nail Services
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6} sx={{ textAlign: "left" }}>
-                <Typography variant="body1">Basic Manicure</Typography>
-                <Typography variant="body1">Gel Polish Manicure</Typography>
-                <Typography variant="body1">Basic Pedicure</Typography>
-                <Typography variant="body1">Pedicure + Gel Manicure</Typography>
-                <Typography variant="body1">Nail Repair</Typography>
-              </Grid>
-              <Grid item xs={6} sx={{ textAlign: "right" }}>
-                <Typography variant="body1">$20</Typography>
-                <Typography variant="body1">$25</Typography>
-                <Typography variant="body1">$15</Typography>
-                <Typography variant="body1">$30</Typography>
-                <Typography variant="body1">$10</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-
-          {/* Eyelash Extensions */}
-          <Box
-            sx={{
-              marginBottom: "20px",
-              borderBottom: "1px solid #6d4c41",
-              paddingBottom: "10px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
-                color: "#6d4c41",
-                marginBottom: "10px",
-                textTransform: "uppercase",
-              }}
-            >
-              Eyelash Extensions
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6} sx={{ textAlign: "left" }}>
-                <Typography variant="body1">Temporary Extensions</Typography>
-                <Typography variant="body1">Eyelash Refill</Typography>
-                <Typography variant="body1">Eyelash Lift</Typography>
-                <Typography variant="body1">Eyelash Treatment</Typography>
-                <Typography variant="body1">Volume</Typography>
-              </Grid>
-              <Grid item xs={6} sx={{ textAlign: "right" }}>
-                <Typography variant="body1">$30</Typography>
-                <Typography variant="body1">$25</Typography>
-                <Typography variant="body1">$15</Typography>
-                <Typography variant="body1">$30</Typography>
-                <Typography variant="body1">$25</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-
-          {/* Book Now Button */}
-          <Button
-            variant="contained"
-            sx={{
-              marginTop: "20px",
-              backgroundColor: "#6d4c41",
-              color: "#fff",
               fontWeight: "bold",
-              padding: "10px 20px",
-              "&:hover": {
-                backgroundColor: "#5a392f",
-              },
+              marginTop: "20px",
             }}
           >
-            Book Now
-          </Button>
+            @shanyb.nails
+          </Typography>
         </Container>
       </Box>
     </div>
