@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Box, Card, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, Card, CardMedia, Grid } from "@mui/material";
+
+// ייבוא כל התמונות מתיקיית images
+const importAll = (r) => r.keys().map((key) => r(key));
+const allImages = importAll(require.context("../../images", false, /\.(jpeg|jpg|png|gif)$/)).map(
+  (img, index) => ({
+    id: index,
+    url: img,
+  })
+);
 
 const Catalog = () => {
-  const allImages = Array.from({ length: 100 }, (_, i) => ({
-    id: i,
-    url: `https://picsum.photos/300/400?random=${i}`,
-  })); // רשימת כל התמונות מראש
-
   const [visibleImages, setVisibleImages] = useState([]); // התמונות המוצגות
   const [itemsToShow, setItemsToShow] = useState(10); // כמה תמונות להציג בהתחלה
   const observerRef = useRef(null);
@@ -38,7 +42,6 @@ const Catalog = () => {
 
   return (
     <Box sx={styles.page}>
-    
       <Grid container spacing={3} sx={styles.catalog}>
         {visibleImages.map((image, index) => (
           <Grid
@@ -75,11 +78,6 @@ const styles = {
     padding: "20px",
     fontFamily: "Arial, sans-serif",
   },
-  title: {
-    color: "#333",
-    fontWeight: "bold",
-    marginBottom: "20px",
-  },
   catalog: {
     marginTop: "2px",
   },
@@ -94,7 +92,7 @@ const styles = {
     },
   },
   image: {
-    height: "400px",
+    height: "300px",
     objectFit: "cover",
   },
   observer: {
