@@ -43,9 +43,10 @@ function Navbar() {
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
-            gap: 5,
+            gap: 4,
             py: 2,
             flexGrow: 1,
+          
           }}
         >
           {navItems.map((item) => (
@@ -54,8 +55,8 @@ function Navbar() {
               component={Link} // שימוש בקישור React
               to={item.path}
               sx={{
-                paddingX: 3,
-                paddingY: 2,
+                paddingX: 4,
+                paddingY: 3,
                 fontSize: "14px",
                 color: pathname === item.path ? "#a1887f" : "inherit",
                 fontWeight: pathname === item.path ? "bold" : "normal",

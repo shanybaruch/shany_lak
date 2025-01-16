@@ -45,8 +45,8 @@ function Home() {
             variant="subtitle1"
             sx={{
               fontFamily: "serif",
-              letterSpacing: 2,
-              marginBottom: 6,
+              letterSpacing: 4,
+              marginBottom: 7,
               fontSize: "18px",
             }}
           >
@@ -59,7 +59,7 @@ function Home() {
               fontFamily: "Segoe UI",
               lineHeight: 1.5,
               fontWeight: "bold",
-              marginBottom: 4,
+              marginBottom: 6,
             }}
           >
             THE BEST{" "}
@@ -78,7 +78,7 @@ function Home() {
               sx={{
                 fontFamily: "unset", // שינוי הפונט עבור המילה NAILS
                 fontStyle: "italic",
-                letterSpacing: 6,
+                letterSpacing: 8,
               }}
             >
               NAILS
@@ -92,11 +92,13 @@ function Home() {
               color: "black",
               borderColor: "black",
               borderRadius: 0,
-              paddingX: 4,
-              paddingY: 1.5,
-              fontSize: "16px",
+              letterSpacing: 1,
+              paddingX: 3,
+              paddingY: 1,
+              marginBottom: -3,
+              fontSize: "14px",
               "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.4)",
+                backgroundColor: "rgba(255, 255, 255, 0.6)",
               },
             }}
           >

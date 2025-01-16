@@ -49,7 +49,7 @@ const Catalog = () => {
             xs={12}
             sm={6}
             md={4}
-            lg={3}
+            lg={2.4}
             key={image.id}
             sx={{
               animation: `fadeInUp 0.5s ease ${index * 0.1}s both`,
@@ -75,11 +75,11 @@ const styles = {
   page: {
     backgroundColor: "#f4f4f9",
     minHeight: "100vh",
-    padding: "100px",
+    padding: "150px",
     fontFamily: "Arial, sans-serif",
   },
   catalog: {
-    marginTop: "2px",
+    marginTop: "0px",
   },
   card: {
     borderRadius: "5px",
@@ -87,16 +87,16 @@ const styles = {
     overflow: "hidden",
     transition: "transform 0.5s, box-shadow 0.1s",
     "&:hover": {
-      transform: "scale(1.05)",
-      boxShadow: "0 8px 15px rgba(0, 0, 0, 0.2)",
+      transform: "scale(1.15)",
+      boxShadow: "0 12px 20px rgba(0, 0, 0, 0.2)",
     },
   },
   image: {
-    height: "300px",
+    height: "250px",
     objectFit: "cover",
   },
   observer: {
-    height: "1px",
+    height: "6px",
   },
 };
 
