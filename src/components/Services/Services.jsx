@@ -30,6 +30,8 @@ function Services() {
       title: "Colors",
       icon: <PersonIcon sx={{ fontSize: 40, color: "#8d6e63" }} />,
       description: "Our range of nail polish colors",
+      onClick: () => navigate("/colors"),
+
     },
     {
       title: "Catalog",

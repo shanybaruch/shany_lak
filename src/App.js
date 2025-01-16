@@ -8,6 +8,7 @@ import Calendar from "./components/Calendar/Calendar";
 import ScrollToTop from "./components/Scrolltotop/Scrolltotop.jsx";
 import PriceList from "./components/PriceList/PriceList.jsx";
 import Catalog from "./components/Catalog/Catalog.jsx";
+import Colors from "./components/Colors/Colors.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/pricelist" element={<PriceList />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/colors" element={<Colors />} />
 
       </Routes>
     </Router>

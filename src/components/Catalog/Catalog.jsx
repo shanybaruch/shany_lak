@@ -12,7 +12,7 @@ const allImages = importAll(require.context("../../images", false, /\.(jpeg|jpg|
 
 const Catalog = () => {
   const [visibleImages, setVisibleImages] = useState([]); // התמונות המוצגות
-  const [itemsToShow, setItemsToShow] = useState(10); // כמה תמונות להציג בהתחלה
+  const [itemsToShow, setItemsToShow] = useState(50); // כמה תמונות להציג בהתחלה
   const observerRef = useRef(null);
 
   // עדכון התמונות המוצגות בהתאם למספר המבוקש
@@ -24,13 +24,13 @@ const Catalog = () => {
   useEffect(() => {
     const observerCallback = (entries) => {
       if (entries[0].isIntersecting) {
-        setTimeout(() => setItemsToShow((prev) => prev + 10), 300); // טוען 10 תמונות חדשות
+        setTimeout(() => setItemsToShow((prev) => prev + 30), 300); // טוען 30 תמונות חדשות
       }
     };
 
     const observer = new IntersectionObserver(observerCallback, {
       root: null,
-      threshold: 0.1, // מפעיל כאשר האלמנט 10% בתוך הצפייה
+      threshold: 0.2, // מפעיל כאשר האלמנט 10% בתוך הצפייה
     });
 
     if (observerRef.current) {
@@ -75,7 +75,7 @@ const styles = {
   page: {
     backgroundColor: "#f4f4f9",
     minHeight: "100vh",
-    padding: "20px",
+    padding: "100px",
     fontFamily: "Arial, sans-serif",
   },
   catalog: {
